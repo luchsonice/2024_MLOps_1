@@ -1,4 +1,15 @@
+import timm 
 import torch
+
+class resnet():
+    def __init__(self):
+        super().__init__()
+    model = timm.create_model('resnet18',pretrained=True,num_classes=2)
+
+
+
+
+
 
 class MyNeuralNet(torch.nn.Module):
     """ Basic neural network class. 
