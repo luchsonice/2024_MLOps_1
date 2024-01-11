@@ -4,5 +4,6 @@ timm
 matplotlib
 wandb
 dvc
+dvc[gdrive]
 tqdm
 tensorboard
