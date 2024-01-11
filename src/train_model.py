@@ -35,13 +35,13 @@ def train(config = None):
         # split config_path
         if config is not None:
             experiment_name = config.split('/')[-1].split('.')[0]
-        #    logger = SummaryWriter(os.path.join("runs", experiment_name, time_stamp))
+            logger = SummaryWriter(os.path.join("runs", experiment_name, time_stamp))
         else:
             experiment_name = "sweep"
-        #    logger = SummaryWriter(os.path.join("sweeps", experiment_name, time_stamp))
+            logger = SummaryWriter(os.path.join("sweeps", experiment_name, time_stamp))
         
         create_result_folders(os.path.join(experiment_name, time_stamp))
-        trainloader, _, valloader = get_dataloaders(batch_size,seed)
+        trainloader, valloader, _ = get_dataloaders(batch_size,seed)
 
         model = ResNet()
         optimizer = optim.AdamW(model.parameters(), lr=lr)
