@@ -7,8 +7,6 @@ from torchvision.transforms import v2
 
 os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
 
-TEST_DATA_VAR = 'test'
-
 if __name__ == "__main__":
     """Processes smoker data."""
     data_path = "data/raw/"
@@ -106,29 +104,29 @@ class CustomTensorDataset(torch.utils.data.Dataset):
         return self.tensors[0].size(0)
 
 
-# def get_dataloaders(batch_size: int = 64, **kwargs) -> tuple[torch.utils.data.DataLoader, torch.utils.data.DataLoader, torch.utils.data.DataLoader]:
-#     data_processed_path = "data/processed/"
-#     train_images_tensor = torch.load(data_processed_path + "train_images.pt")
-#     train_labels_tensor = torch.load(data_processed_path + "train_labels.pt")
-#     val_images_tensor = torch.load(data_processed_path + "val_images.pt")
-#     val_labels_tensor = torch.load(data_processed_path + "val_labels.pt")
-#     test_images_tensor = torch.load(data_processed_path + "test_images.pt")
-#     test_labels_tensor = torch.load(data_processed_path + "test_labels.pt")
+def get_dataloaders(batch_size: int = 64, **kwargs) -> tuple[torch.utils.data.DataLoader, torch.utils.data.DataLoader, torch.utils.data.DataLoader]:
+    data_processed_path = "data/processed/"
+    train_images_tensor = torch.load(data_processed_path + "train_images.pt")
+    train_labels_tensor = torch.load(data_processed_path + "train_labels.pt")
+    val_images_tensor = torch.load(data_processed_path + "val_images.pt")
+    val_labels_tensor = torch.load(data_processed_path + "val_labels.pt")
+    test_images_tensor = torch.load(data_processed_path + "test_images.pt")
+    test_labels_tensor = torch.load(data_processed_path + "test_labels.pt")
 
-#     transform = v2.Compose([
-#         # v2.RandomApply(torch.nn.ModuleList([
-#         #     v2.RandomResizedCrop(size=(250, 250), scale=(0.8, 1.0), antialias=True)
-#         # ]), p=0.5),
-#         v2.RandomHorizontalFlip(p=0.5), 
-#     ])
+    transform = v2.Compose([
+        # v2.RandomApply(torch.nn.ModuleList([
+        #     v2.RandomResizedCrop(size=(250, 250), scale=(0.8, 1.0), antialias=True)
+        # ]), p=0.5),
+        v2.RandomHorizontalFlip(p=0.5), 
+    ])
 
-#     train_dataset = CustomTensorDataset((train_images_tensor, train_labels_tensor), transform)
-#     val_dataset = torch.utils.data.TensorDataset(val_images_tensor, val_labels_tensor)
-#     test_dataset = torch.utils.data.TensorDataset(test_images_tensor, test_labels_tensor)
+    train_dataset = CustomTensorDataset((train_images_tensor, train_labels_tensor), transform)
+    val_dataset = torch.utils.data.TensorDataset(val_images_tensor, val_labels_tensor)
+    test_dataset = torch.utils.data.TensorDataset(test_images_tensor, test_labels_tensor)
 
-#     train_loader = torch.utils.data.DataLoader(train_dataset, batch_size=batch_size, shuffle=True, **kwargs)
-#     val_loader = torch.utils.data.DataLoader(val_dataset, batch_size=batch_size, shuffle=False, **kwargs)
-#     test_loader = torch.utils.data.DataLoader(test_dataset, batch_size=batch_size, shuffle=False, **kwargs)
+    train_loader = torch.utils.data.DataLoader(train_dataset, batch_size=batch_size, shuffle=True, **kwargs)
+    val_loader = torch.utils.data.DataLoader(val_dataset, batch_size=batch_size, shuffle=False, **kwargs)
+    test_loader = torch.utils.data.DataLoader(test_dataset, batch_size=batch_size, shuffle=False, **kwargs)
 
-#     return train_loader, val_loader, test_loader
+    return train_loader, val_loader, test_loader
 

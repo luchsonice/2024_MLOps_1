@@ -1,4 +1,5 @@
 import numpy as np
+import sys
 import os
 import random
 import torch
@@ -12,12 +13,17 @@ import pytorch_lightning
 from torch.utils.tensorboard import SummaryWriter
 logging.basicConfig(format="%(asctime)s - %(levelname)s: %(message)s", level=logging.INFO, datefmt="%I:%M:%S")
 
+print(sys.path)
+
+#from src.data.make_dataset import *
+#from src.models.model import *
 from src.data.make_dataset import get_dataloaders
-from src.data.make_dataset import TEST_DATA_VAR
+#from src.data.make_dataset import TEST_DATA_VAR
 from src.models.model import resnet34
-from src.models.model import TEST_VAR
-from src.models.model import TEST_FUN
+#from src.models.model import TEST_VAR
+#from src.models.model import TEST_FUN
 from src.models.model import ResNetModel
+
 import wandb
 import timm
 
@@ -30,11 +36,16 @@ def create_result_folders(experiment_name):
     os.makedirs("results", exist_ok=True)
     os.makedirs(os.path.join("results", experiment_name), exist_ok=True)
 
-def train(config = None):
-
-    batch_size = config.batch_size
-    lr = config.lr
-    num_epochs = config.num_epochs
+def train(config_file = None):
+    with open(config_file, 'r') as file:
+        config = yaml.safe_load(file)
+    
+    print(config)
+    print(type(config))
+    batch_size = config['batch_size']
+    lr = config['lr']
+    num_epochs = config['num_epochs']
+    time_stamp = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
 
     model = ResNetModel('resnet18', lr=lr)
     
