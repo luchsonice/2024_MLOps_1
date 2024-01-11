@@ -8,12 +8,13 @@ import logging
 import datetime
 import argparse
 import yaml
+import pytorch_lightning
 from torch.utils.tensorboard import SummaryWriter
 logging.basicConfig(format="%(asctime)s - %(levelname)s: %(message)s", level=logging.INFO, datefmt="%I:%M:%S")
 
 from src.data.make_dataset import get_dataloaders
-from src.models.model import resnet18 as ResNet
-print(ResNet)
+from src.data.make_dataset import TEST_DATA_VAR
+from src.models.model import resnet34
 from src.models.model import TEST_VAR
 from src.models.model import TEST_FUN
 from src.models.model import ResNetModel

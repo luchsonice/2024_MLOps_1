@@ -7,3 +7,4 @@ dvc
 dvc[gdrive]
 tqdm
 tensorboard
+pytorch-lightning
