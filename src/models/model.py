@@ -4,7 +4,9 @@ import torch
 class resnet():
     def __init__(self):
         super().__init__()
-    model = timm.create_model('resnet18',pretrained=True,num_classes=2)
+    def model(self):
+        pre_model = timm.create_model('resnet18',pretrained=True,num_classes=2)
+        return pre_model
 
 
 
