@@ -1,5 +1,9 @@
 # Training configuration
-batch_size: 64
-lr: 0.001
-num_epochs: 10
-seed: 42
+batch_size:
+  value: 64
+lr: 
+  value: 0.001
+num_epochs: 
+  value: 10
+seed: 
+  value: 42
