@@ -12,8 +12,6 @@ from torch.utils.tensorboard import SummaryWriter
 logging.basicConfig(format="%(asctime)s - %(levelname)s: %(message)s", level=logging.INFO, datefmt="%I:%M:%S")
 from src.models.model import resnet18 as ResNet
 import wandb
-from src.data.make_dataset import get_dataloaders
-
 
 def create_result_folders(experiment_name):
     os.makedirs("results", exist_ok=True)
