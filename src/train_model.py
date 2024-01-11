@@ -8,7 +8,7 @@ import logging
 import datetime
 import argparse
 import yaml
-#from torch.utils.tensorboard import SummaryWriter
+from torch.utils.tensorboard import SummaryWriter
 logging.basicConfig(format="%(asctime)s - %(levelname)s: %(message)s", level=logging.INFO, datefmt="%I:%M:%S")
 from src.models.model import resnet18 as ResNet
 import wandb
