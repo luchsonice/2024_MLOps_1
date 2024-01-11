@@ -2,3 +2,4 @@
 batch_size: 64
 lr: 0.001
 num_epochs: 10
+seed: 42
