@@ -13,6 +13,7 @@ logging.basicConfig(format="%(asctime)s - %(levelname)s: %(message)s", level=log
 from src.models.model import resnet18 as ResNet
 import wandb
 from src.data.make_dataset import get_dataloaders
+import timm
 
 def create_result_folders(experiment_name):
     os.makedirs("results", exist_ok=True)
@@ -42,9 +43,10 @@ def train(config = None):
         create_result_folders(os.path.join(experiment_name, time_stamp))
         trainloader, valloader, _ = get_dataloaders(batch_size)
 
-        model = ResNet()
+        #model = ResNet()
+        model = timm.create_model('resnet18', pretrained=True,num_classes=2)
         optimizer = optim.AdamW(model.parameters(), lr=lr)
-        lossfunc = torch.nn.MSELoss()
+        lossfunc = torch.nn.CrossEntropyLoss()
 
         l = len(trainloader)
         val_loss_current = np.inf
@@ -60,7 +62,7 @@ def train(config = None):
 
                 with torch.cuda.amp.autocast():
                     prediction = model(image)
-                    loss = lossfunc(label, prediction)
+                    loss = lossfunc(prediction,label)
                 
                 optimizer.zero_grad()
                 loss.backward()
@@ -83,7 +85,7 @@ def train(config = None):
                 
                 with torch.cuda.amp.autocast():
                     prediction = model(image) # prediction
-                    val_loss += lossfunc(label, prediction).item() # loss between noise and predicted noise
+                    val_loss += lossfunc(prediction,label).item() # loss between noise and predicted noise
 
                 if i == random_idx:
                     random_image = image
