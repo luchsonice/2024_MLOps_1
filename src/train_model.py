@@ -12,6 +12,7 @@ from torch.utils.tensorboard import SummaryWriter
 logging.basicConfig(format="%(asctime)s - %(levelname)s: %(message)s", level=logging.INFO, datefmt="%I:%M:%S")
 from src.models.model import resnet18 as ResNet
 import wandb
+from src.data.make_dataset import get_dataloaders
 
 def create_result_folders(experiment_name):
     os.makedirs("results", exist_ok=True)
@@ -24,7 +25,6 @@ def train(config = None):
         print(wandb.config)
         device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')  
         print(f"Model will run on {device}")
-        Data_type = wandb.config.Data
 
         batch_size = wandb.config.batch_size
         lr = wandb.config.lr
