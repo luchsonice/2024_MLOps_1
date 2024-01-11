@@ -53,10 +53,10 @@ def train(config = None):
 
         for epoch in range(1, num_epochs + 1):
             logging.info(f"Starting epoch {epoch}:")
-            pbar = tqdm(trainloader)
+            num_batches = tqdm(trainloader)
             model.train()
 
-            for i, (image, label) in enumerate(pbar):
+            for i, (image, label) in enumerate(num_batches):
                 image = image.to(device)
                 label = label.to(device)
 
@@ -70,23 +70,22 @@ def train(config = None):
 
                 wandb.log({'train loss': loss})
 
-
-                pbar.set_postfix(MSE=loss.item())
+                num_batches.set_postfix(MSE=loss.item())
                 logger.add_scalar("train MSE", loss.item(), global_step=epoch * l + i)
             # time stamp
             
-            pbar_val = tqdm(valloader)
+            num_batches_val = tqdm(valloader)
             model.eval()
             # pick a random integer between 0 and len(valloader)
             random_idx = random.randint(0, len(valloader)-1)
             val_loss = 0
-            for i, (image, label) in enumerate(pbar_val):
+            for i, (image, label) in enumerate(num_batches_val):
                 image = image.to(device)
                 label = label.to(device)
                 
-                prediction = model() # prediction
-                
-                val_loss += lossfunc(label, prediction).item() # loss between noise and predicted noise
+                with torch.cuda.amp.autocast():
+                    prediction = model(image) # prediction
+                    val_loss += lossfunc(label, prediction).item() # loss between noise and predicted noise
 
                 if i == random_idx:
                     random_image = image
