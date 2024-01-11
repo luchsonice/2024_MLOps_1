@@ -102,6 +102,7 @@ def train(config = None):
             
             if val_loss < val_loss_current:
                 val_loss_current = val_loss
+                os.makedirs(os.path.join("models", experiment_name, time_stamp), exist_ok=True)
                 torch.save(model.state_dict(), os.path.join("models", experiment_name, time_stamp, f"weights-{epoch}.pt"))
 
 
