@@ -1,6 +1,8 @@
 docs/site/
 data/
 wandb/
+runs/
+models/
 
 # test cache
 manual_test/

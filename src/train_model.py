@@ -29,7 +29,6 @@ def train(config = None):
         batch_size = wandb.config.batch_size
         lr = wandb.config.lr
         num_epochs = wandb.config.num_epochs
-        seed = wandb.config.seed
         time_stamp = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
 
         # split config_path
@@ -41,7 +40,7 @@ def train(config = None):
             logger = SummaryWriter(os.path.join("sweeps", experiment_name, time_stamp))
         
         create_result_folders(os.path.join(experiment_name, time_stamp))
-        trainloader, valloader, _ = get_dataloaders(batch_size,seed)
+        trainloader, valloader, _ = get_dataloaders(batch_size)
 
         model = ResNet()
         optimizer = optim.AdamW(model.parameters(), lr=lr)
