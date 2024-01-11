@@ -3,6 +3,7 @@ from torchvision import datasets, transforms
 import os
 import matplotlib.pyplot as plt
 import numpy as np
+from torchvision.transforms import v2
 
 os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
 
@@ -80,6 +81,29 @@ if __name__ == "__main__":
 
     print('Finished')
 
+# https://stackoverflow.com/questions/55588201/pytorch-transforms-on-tensordataset
+class CustomTensorDataset(torch.utils.data.Dataset):
+    """TensorDataset with support of transforms.
+    """
+    def __init__(self, tensors, transform=None):
+        assert all(tensors[0].size(0) == tensor.size(0) for tensor in tensors)
+        self.tensors = tensors
+        self.transform = transform
+
+    def __getitem__(self, index):
+        x = self.tensors[0][index]
+
+        if self.transform:
+            x = self.transform(x)
+
+        y = self.tensors[1][index]
+
+        return x, y
+
+    def __len__(self):
+        return self.tensors[0].size(0)
+
+
 def get_dataloaders(batch_size: int = 64, **kwargs) -> tuple[torch.utils.data.DataLoader, torch.utils.data.DataLoader, torch.utils.data.DataLoader]:
     data_processed_path = "data/processed/"
     train_images_tensor = torch.load(data_processed_path + "train_images.pt")
@@ -89,7 +113,14 @@ def get_dataloaders(batch_size: int = 64, **kwargs) -> tuple[torch.utils.data.Da
     test_images_tensor = torch.load(data_processed_path + "test_images.pt")
     test_labels_tensor = torch.load(data_processed_path + "test_labels.pt")
 
-    train_dataset = torch.utils.data.TensorDataset(train_images_tensor, train_labels_tensor)
+    transform = v2.Compose([
+        # v2.RandomApply(torch.nn.ModuleList([
+        #     v2.RandomResizedCrop(size=(250, 250), scale=(0.8, 1.0), antialias=True)
+        # ]), p=0.5),
+        v2.RandomHorizontalFlip(p=0.5), 
+    ])
+
+    train_dataset = CustomTensorDataset((train_images_tensor, train_labels_tensor), transform)
     val_dataset = torch.utils.data.TensorDataset(val_images_tensor, val_labels_tensor)
     test_dataset = torch.utils.data.TensorDataset(test_images_tensor, test_labels_tensor)
 
