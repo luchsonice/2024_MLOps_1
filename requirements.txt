@@ -4,5 +4,4 @@ timm
 matplotlib
 wandb
 dvc
-tensorboard
 tqdm

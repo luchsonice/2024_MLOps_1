@@ -8,7 +8,7 @@ import logging
 import datetime
 import argparse
 import yaml
-from torch.utils.tensorboard import SummaryWriter
+#from torch.utils.tensorboard import SummaryWriter
 logging.basicConfig(format="%(asctime)s - %(levelname)s: %(message)s", level=logging.INFO, datefmt="%I:%M:%S")
 from src.models.model import resnet18 as ResNet
 import wandb
@@ -35,10 +35,10 @@ def train(config = None):
         # split config_path
         if config is not None:
             experiment_name = config.split('/')[-1].split('.')[0]
-            logger = SummaryWriter(os.path.join("runs", experiment_name, time_stamp))
+        #    logger = SummaryWriter(os.path.join("runs", experiment_name, time_stamp))
         else:
             experiment_name = "sweep"
-            logger = SummaryWriter(os.path.join("sweeps", experiment_name, time_stamp))
+        #    logger = SummaryWriter(os.path.join("sweeps", experiment_name, time_stamp))
         
         create_result_folders(os.path.join(experiment_name, time_stamp))
         trainloader, _, valloader = get_dataloaders(batch_size,seed)
