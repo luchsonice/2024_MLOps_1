@@ -7,3 +7,5 @@ dvc
 dvc[gdrive]
 tqdm
 tensorboard
+hydra
+omegaconf

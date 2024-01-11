@@ -1,7 +1,6 @@
 # Training configuration
-batch_size:
-  value: 64
-lr: 
-  value: 0.001
-num_epochs: 
-  value: 2
+name: "config"
+hyperparameters:
+  batch_size: 64
+  lr: 0.001
+  num_epochs: 2

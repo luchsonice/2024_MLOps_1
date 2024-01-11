@@ -12,6 +12,9 @@ from torch.utils.tensorboard import SummaryWriter
 logging.basicConfig(format="%(asctime)s - %(levelname)s: %(message)s", level=logging.INFO, datefmt="%I:%M:%S")
 from src.models.model import resnet18 as ResNet
 import wandb
+import hydra
+from omegaconf import DictConfig, OmegaConf
+
 from src.data.make_dataset import get_dataloaders
 import timm
 
@@ -19,7 +22,7 @@ def create_result_folders(experiment_name):
     os.makedirs("results", exist_ok=True)
     os.makedirs(os.path.join("results", experiment_name), exist_ok=True)
 
-def train(config = None):
+def train(config = None, config_name = None):
     with wandb.init(config=config, 
                     project="MLOps_Project",
                     entity="luxonice",):
@@ -34,7 +37,7 @@ def train(config = None):
 
         # split config_path
         if config is not None:
-            experiment_name = config.split('/')[-1].split('.')[0]
+            experiment_name = config_name
             logger = SummaryWriter(os.path.join("runs", experiment_name, time_stamp))
         else:
             experiment_name = "sweep"
@@ -106,9 +109,17 @@ def train(config = None):
                 torch.save(model.state_dict(), os.path.join("models", experiment_name, time_stamp, f"weights-{epoch}.pt"))
 
 
+# Uses hydra to load the config file
+@hydra.main(version_base=None, config_path="..\configs", config_name="config")
+def main(cfg : DictConfig) -> None:
+    # Store name from config file
+    config_name = cfg.name
+    # Store hyperparameters from config file as a dict
+    config = dict(cfg.hyperparameters)    
+    # Train the model with the given hyperparameters
+    train(config, config_name)
+    
+
+
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser()
-    parser.add_argument('--config', type=str, default='configs/config.yaml')
-    args = parser.parse_args()
-    config = args.config
-    train(config)
+    main()
