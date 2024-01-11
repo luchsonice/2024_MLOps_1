@@ -4,4 +4,4 @@ batch_size:
 lr: 
   value: 0.001
 num_epochs: 
-  value: 10
+  value: 2
