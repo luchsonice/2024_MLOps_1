@@ -9,3 +9,4 @@ tqdm
 tensorboard
 hydra-core
 omegaconf
+pytest
