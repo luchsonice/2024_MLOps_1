@@ -14,7 +14,6 @@ from src.models.model import resnet18 as ResNet
 import wandb
 from src.data.make_dataset import get_dataloaders
 
-
 def create_result_folders(experiment_name):
     os.makedirs("results", exist_ok=True)
     os.makedirs(os.path.join("results", experiment_name), exist_ok=True)
@@ -26,11 +25,11 @@ def train(config = None):
         print(wandb.config)
         device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')  
         print(f"Model will run on {device}")
-        Data_type = wandb.config.Data
 
         batch_size = wandb.config.batch_size
         lr = wandb.config.lr
         num_epochs = wandb.config.num_epochs
+        seed = wandb.config.seed
         time_stamp = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
 
         # split config_path
@@ -42,7 +41,7 @@ def train(config = None):
             logger = SummaryWriter(os.path.join("sweeps", experiment_name, time_stamp))
         
         create_result_folders(os.path.join(experiment_name, time_stamp))
-        trainloader, _, valloader = get_dataloaders(batch_size)
+        trainloader, _, valloader = get_dataloaders(batch_size,seed)
 
         model = ResNet()
         optimizer = optim.AdamW(model.parameters(), lr=lr)
