@@ -50,30 +50,30 @@ end of the project.
 
 ### Week 1
 
-* [ ] Create a git repository
-* [ ] Make sure that all team members have write access to the github repository
-* [ ] Create a dedicated environment for you project to keep track of your packages
-* [ ] Create the initial file structure using cookiecutter
-* [ ] Fill out the `make_dataset.py` file such that it downloads whatever data you need and
-* [ ] Add a model file and a training script and get that running
-* [ ] Remember to fill out the `requirements.txt` file with whatever dependencies that you are using
-* [ ] Remember to comply with good coding practices (`pep8`) while doing the project
+* [X] Create a git repository
+* [X] Make sure that all team members have write access to the github repository
+* [X] Create a dedicated environment for you project to keep track of your packages
+* [X] Create the initial file structure using cookiecutter
+* [X] Fill out the `make_dataset.py` file such that it downloads whatever data you need and
+* [X] Add a model file and a training script and get that running
+* [X] Remember to fill out the `requirements.txt` file with whatever dependencies that you are using
+* [X] Remember to comply with good coding practices (`pep8`) while doing the project
 * [ ] Do a bit of code typing and remember to document essential parts of your code
-* [ ] Setup version control for your data or part of your data
+* [X] Setup version control for your data or part of your data
 * [ ] Construct one or multiple docker files for your code
-* [ ] Build the docker files locally and make sure they work as intended
+* [X] Build the docker files locally and make sure they work as intended
 * [ ] Write one or multiple configurations files for your experiments
-* [ ] Used Hydra to load the configurations and manage your hyperparameters
-* [ ] When you have something that works somewhat, remember at some point to to some profiling and see if
+* [X] Used Hydra to load the configurations and manage your hyperparameters
+* [X] When you have something that works somewhat, remember at some point to to some profiling and see if
       you can optimize your code
-* [ ] Use Weights & Biases to log training progress and other important metrics/artifacts in your code. Additionally,
+* [X] Use Weights & Biases to log training progress and other important metrics/artifacts in your code. Additionally,
       consider running a hyperparameter optimization sweep.
-* [ ] Use Pytorch-lightning (if applicable) to reduce the amount of boilerplate in your code
+* [X] Use Pytorch-lightning (if applicable) to reduce the amount of boilerplate in your code
 
 ### Week 2
 
-* [ ] Write unit tests related to the data part of your code
-* [ ] Write unit tests related to model construction and or model training
+* [X] Write unit tests related to the data part of your code
+* [X] Write unit tests related to model construction and or model training
 * [ ] Calculate the coverage.
 * [ ] Get some continuous integration running on the github repository
 * [ ] Create a data storage in GCP Bucket for you data and preferable link this with your data version control setup
@@ -105,7 +105,7 @@ end of the project.
 >
 > Answer:
 
---- question 1 fill here ---
+1
 
 ### Question 2
 > **Enter the study number for each member in the group**
@@ -116,7 +116,7 @@ end of the project.
 >
 > Answer:
 
---- question 2 fill here ---
+s194369, s194340, s194331, s194349
 
 ### Question 3
 > **What framework did you choose to work with and did it help you complete the project?**
@@ -129,7 +129,7 @@ end of the project.
 >
 > Answer:
 
---- question 3 fill here ---
+We have in our project used different third-party framework for different functionality. We have first used pytorch lighting for our model. Where we used the ResNet class and more specific we used the model resnet18, in which we used the pre-trained model. We also used hydra to train with hyperparamters. Another third-party we used was Weights & Biases to log training progress.  
 
 ## Coding environment
 
@@ -148,7 +148,15 @@ end of the project.
 >
 > Answer:
 
---- question 4 fill here ---
+Our packages are managed in a conda environment. Therefor the required packages for our project is in the requirements.txt this file can be found in the top folder of our projects structure which is created using cookiecutter. In this file we have all our packages and the versions used in this project. We have also a a make file which includes how to set up environment, requriments etc. To get a complete copy of our development environment one would have to run the following comands:
+```
+git clone https://github.com/luchsonice/2024_MLOps_1.git
+make create_environment
+make requirements  
+dvc pull
+make data
+```
+Also it is assumed that it is python version 10 or newer.
 
 ### Question 5
 
@@ -163,7 +171,7 @@ end of the project.
 > *experiments.*
 > Answer:
 
---- question 5 fill here ---
+We used the cookiecutter template and in this we have filled out the congigs folder with our Training configuration, the data folder with our data src folder with our model The test folder to have our test in. 
 
 ### Question 6
 
@@ -174,7 +182,8 @@ end of the project.
 >
 > Answer:
 
---- question 6 fill here ---
+In the project we have written comments. We have tried to do so that our code follows the pep8 compliant, however we have not used any checks to ensure this.
+These concepts matter in large project because when multiple people work on the code it is still important that code is in the same format and when other people (that has not worked with code before) has to use it. It is easier if the quality of the code and format is standard and the same for all the code.
 
 ## Version control
 
@@ -223,7 +232,7 @@ end of the project.
 >
 > Answer:
 
---- question 9 fill here ---
+In the project we used branches, we used these when we were working at different parts, to both protect the main and also so it was easier when different people were implementing different parts. We would therefor also use pull request, however to make it easier the pull request would only contain one new feature. This helped making sure that we did not have to many branches at once but also making mering the branches with main easier, since it would only be a few new things. When a pull request was done we would look it over and also try the code to ensure it worked.
 
 ### Question 10
 
@@ -238,7 +247,7 @@ end of the project.
 >
 > Answer:
 
---- question 10 fill here ---
+We did in our project use DVC for managing data. We stored our data on google drive. We did use the whole dataset and did not change anything during the project so here perhaps the fact we used DVC was not so important. However if we had to add more data or change (could be only using a subset of the data) the data then DVC could have helped with that with it's version control. One thing DVC did was making it easy to get the data and if someone else had to use our project it would be very easy for them to get the data, since it only requires a few commands.
 
 ### Question 11
 
@@ -273,7 +282,13 @@ end of the project.
 >
 > Answer:
 
---- question 12 fill here ---
+In our project we had a configs folder in which a configuration file was. It had the hyperparamters: the batch size of the model, learning rate and number of epochs. The configuration file was used by:
+```
+ batch_size = config['batch_size']
+lr = config['lr']
+num_epochs = config['num_epochs']
+```
+For Weights and Biases the configuration file is simply just given in the WandbLogger(config=config).
 
 ### Question 13
 
@@ -335,7 +350,8 @@ end of the project.
 >
 > Answer:
 
---- question 16 fill here ---
+When running into bugs in the project we mainly used print statements to debug the code. Which helped us with debugging we did not use any build in debuggers this could in hindsight using the debugger from VS code could have been useful. We did however not use so much time debugging compared to all the other things we did in this project.
+We did also run a single profiling on the code. The from the profiling we could see that what took the longest was function which we could not change. So from profiling we did not find anything we could do to make the code farster.
 
 ## Working in the cloud
 
