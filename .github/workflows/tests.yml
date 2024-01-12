@@ -50,7 +50,9 @@ jobs:
 
     - uses: iterative/setup-dvc@v1
     - name: Get data
-      run: dvc pull
+      run: |
+        dvc pull
+        python src/data/make_dataset.py
       env:
         GDRIVE_CREDENTIALS_DATA: ${{ secrets.GDRIVE_CREDENTIALS_DATA }}
     
