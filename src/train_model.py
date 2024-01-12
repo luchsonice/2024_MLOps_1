@@ -33,12 +33,12 @@ def create_result_folders(experiment_name):
 
 def train(config = None, config_name = None):
     
-    
+    # Read hyperparameters
     batch_size = config['batch_size']
     lr = config['lr']
     num_epochs = config['num_epochs']
-    time_stamp = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
 
+    # Create model
     model = ResNetModel('resnet18', lr=lr)
     
     # split config_path
@@ -47,19 +47,28 @@ def train(config = None, config_name = None):
     else:
         experiment_name = "sweep"
 
+    # Create results folder
+    time_stamp = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
     create_result_folders(os.path.join(experiment_name, time_stamp))
-    trainloader, valloader, _ = get_dataloaders(batch_size)
-    
+
+    # Create models folder
     model_path = os.path.join("models", experiment_name, time_stamp)
     os.makedirs(model_path, exist_ok=True)
+
+    # Get dataloaders
+    trainloader, valloader, _ = get_dataloaders(batch_size)
+    
+    # Create callbacks
     checkpoint_callback = ModelCheckpoint(
         dirpath=model_path, monitor="val_loss", mode="min"
     )
     early_stopping_callback = EarlyStopping(
         monitor="val_loss", patience=3, verbose=True, mode="min"
     )
+    # Create Wandb logger
     wandb_logger = WandbLogger(config=config, project="MLOps_Project", entity="luxonice")
 
+    # Create trainer
     trainer = Trainer(
         callbacks=[checkpoint_callback, early_stopping_callback],
         accelerator="auto",
@@ -68,6 +77,7 @@ def train(config = None, config_name = None):
         log_every_n_steps=1
         )
 
+    # Train the model
     trainer.fit(model, trainloader, valloader)
 
 # Uses hydra to load the config file
