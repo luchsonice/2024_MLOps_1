@@ -1,38 +1,20 @@
-import numpy as np
 import os
-import random
-import torch
-from tqdm import tqdm
-from torch import optim
 import logging
 import datetime
-import argparse
-import yaml
-import pytorch_lightning
-#from torch.utils.tensorboard import SummaryWriter
 logging.basicConfig(format="%(asctime)s - %(levelname)s: %(message)s", level=logging.INFO, datefmt="%I:%M:%S")
-import wandb
 import hydra
-from omegaconf import DictConfig, OmegaConf
-
+from omegaconf import DictConfig
 from src.data.make_dataset import get_dataloaders
 from src.models.model import ResNetModel
-
-import wandb
-import timm
-import os
-
 from pytorch_lightning import Trainer
 from pytorch_lightning.loggers import WandbLogger
 from pytorch_lightning.callbacks import ModelCheckpoint, EarlyStopping
-
 
 def create_result_folders(experiment_name):
     os.makedirs("results", exist_ok=True)
     os.makedirs(os.path.join("results", experiment_name), exist_ok=True)
 
 def train(config = None, config_name = None):
-    
     # Read hyperparameters
     batch_size = config['batch_size']
     lr = config['lr']

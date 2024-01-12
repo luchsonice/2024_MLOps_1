@@ -1,9 +1,5 @@
-from typing import Any
 import torch.nn as nn
 from torch import optim
-import math
-import torch.utils.model_zoo as model_zoo
-
 from pytorch_lightning import LightningModule
 import timm
 
