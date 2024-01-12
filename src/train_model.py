@@ -31,21 +31,19 @@ def create_result_folders(experiment_name):
     os.makedirs("results", exist_ok=True)
     os.makedirs(os.path.join("results", experiment_name), exist_ok=True)
 
-def train(config_file = None):
-    with open(config_file, 'r') as file:
-        config = yaml.safe_load(file)
+def train(config = None, config_name = None):
     
-    hyperparameters = config['hyperparameters']
-    batch_size = hyperparameters['batch_size']
-    lr = hyperparameters['lr']
-    num_epochs = hyperparameters['num_epochs']
+    
+    batch_size = config['batch_size']
+    lr = config['lr']
+    num_epochs = config['num_epochs']
     time_stamp = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
 
     model = ResNetModel('resnet18', lr=lr)
     
     # split config_path
-    if config_file is not None:
-        experiment_name = config_file.split('/')[-1].split('.')[0]
+    if config_name is not None:
+        experiment_name = config_name
     else:
         experiment_name = "sweep"
 
