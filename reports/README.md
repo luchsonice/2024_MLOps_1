@@ -62,7 +62,7 @@ end of the project.
 * [X] Setup version control for your data or part of your data
 * [ ] Construct one or multiple docker files for your code
 * [X] Build the docker files locally and make sure they work as intended
-* [ ] Write one or multiple configurations files for your experiments
+* [X] Write one or multiple configurations files for your experiments
 * [X] Used Hydra to load the configurations and manage your hyperparameters
 * [X] When you have something that works somewhat, remember at some point to to some profiling and see if
       you can optimize your code
@@ -156,7 +156,7 @@ make requirements
 dvc pull
 make data
 ```
-Also it is assumed that it is python version 10 or newer.
+Also it is assumed that it is python version 10
 
 ### Question 5
 
@@ -202,7 +202,7 @@ These concepts matter in large project because when multiple people work on the 
 >
 > Answer:
 
---- question 7 fill here ---
+In total we have implemented 2 united tests. The test_data and test_model files in the tests folder. In the test_data we have a few test for the data. First we test that there is the correct amount om images in test and train. We also test that the dimensions of all images are correct and lastly we test that the labels are correct. Then for the test_model file here we have one test and it tests if we get the correct output given the input. So we have a toatal of 4 tests.
 
 ### Question 8
 
