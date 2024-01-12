@@ -13,7 +13,7 @@ class ResNetModel(LightningModule):
 
     def forward(self, x):
         return self.net(x)
-    
+
     def training_step(self, batch, batch_idx):
         data, target = batch
         preds = self(data)
@@ -23,7 +23,7 @@ class ResNetModel(LightningModule):
         self.log('train_acc', acc)
 
         return loss
-    
+
     def validation_step(self, batch, batch_idx):
         data, target = batch
         preds = self(data)
@@ -32,7 +32,6 @@ class ResNetModel(LightningModule):
         self.log('val_loss', loss)
         self.log('val_acc', acc)
 
-    
+
     def configure_optimizers(self):
         return optim.AdamW(self.parameters(), lr=self.lr)
-    

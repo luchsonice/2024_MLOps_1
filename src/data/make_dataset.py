@@ -117,7 +117,7 @@ def get_dataloaders(batch_size: int = 64, **kwargs) -> tuple[torch.utils.data.Da
         # v2.RandomApply(torch.nn.ModuleList([
         #     v2.RandomResizedCrop(size=(250, 250), scale=(0.8, 1.0), antialias=True)
         # ]), p=0.5),
-        v2.RandomHorizontalFlip(p=0.5), 
+        v2.RandomHorizontalFlip(p=0.5),
     ])
 
     train_dataset = CustomTensorDataset((train_images_tensor, train_labels_tensor), transform)
@@ -129,4 +129,3 @@ def get_dataloaders(batch_size: int = 64, **kwargs) -> tuple[torch.utils.data.Da
     test_loader = torch.utils.data.DataLoader(test_dataset, batch_size=batch_size, shuffle=False, **kwargs)
 
     return train_loader, val_loader, test_loader
-

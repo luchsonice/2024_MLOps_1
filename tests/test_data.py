@@ -15,7 +15,7 @@ def test_data():
     # Test that there is the correct amount om images in test and train
     # Test that the dimensions of all images are correct
     # Test labels
-    
+
     train_loader, val_loader, test_loader = get_dataloaders(batch_size=64)
 
     assert len(train_loader.dataset) == 716, "Training set has wrong number of samples"
@@ -30,5 +30,3 @@ def test_data():
             assert images.shape[1:] == (3,250,250), "Images have wrong shape"
             unique_labels = torch.unique(torch.concat([unique_labels, labels]))
         assert torch.all(unique_labels == torch.arange(2)), "Labels are wrong"
-        
-        

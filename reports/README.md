@@ -129,7 +129,7 @@ s194369, s194340, s194331, s194349
 >
 > Answer:
 
-We have in our project used different third-party framework for different functionality. We have first used pytorch lighting for our model. Where we used the ResNet class and more specific we used the model resnet18, in which we used the pre-trained model. We also used hydra to train with hyperparamters. Another third-party we used was Weights & Biases to log training progress.  
+We have in our project used different third-party framework for different functionality. We have first used pytorch lighting for our model. Where we used the ResNet class and more specific we used the model resnet18, in which we used the pre-trained model. We also used hydra to train with hyperparamters. Another third-party we used was Weights & Biases to log training progress.
 
 ## Coding environment
 
@@ -152,7 +152,7 @@ Our packages are managed in a conda environment. Therefor the required packages 
 ```
 git clone https://github.com/luchsonice/2024_MLOps_1.git
 make create_environment
-make requirements  
+make requirements
 dvc pull
 make data
 ```
@@ -171,7 +171,7 @@ Also it is assumed that it is python version 10 or newer.
 > *experiments.*
 > Answer:
 
-We used the cookiecutter template and in this we have filled out the congigs folder with our Training configuration, the data folder with our data src folder with our model The test folder to have our test in. 
+We used the cookiecutter template and in this we have filled out the congigs folder with our Training configuration, the data folder with our data src folder with our model The test folder to have our test in.
 
 ### Question 6
 

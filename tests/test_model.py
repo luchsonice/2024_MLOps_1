@@ -11,4 +11,3 @@ def test_model(bs):
     input = torch.randn(size=(bs, 3, 250, 250))
     output = model(input)
     assert output.shape == (bs, 2)
-

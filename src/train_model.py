@@ -22,7 +22,7 @@ def train(config = None, config_name = None):
 
     # Create model
     model = ResNetModel('resnet18', lr=lr)
-    
+
     # split config_path
     if config_name is not None:
         experiment_name = config_name
@@ -39,7 +39,7 @@ def train(config = None, config_name = None):
 
     # Get dataloaders
     trainloader, valloader, _ = get_dataloaders(batch_size)
-    
+
     # Create callbacks
     checkpoint_callback = ModelCheckpoint(
         dirpath=model_path, monitor="val_loss", mode="min"
@@ -68,10 +68,10 @@ def main(cfg : DictConfig) -> None:
     # Store name from config file
     config_name = cfg.name
     # Store hyperparameters from config file as a dict
-    config = dict(cfg.hyperparameters)    
+    config = dict(cfg.hyperparameters)
     # Train the model with the given hyperparameters
     train(config, config_name)
-    
+
 
 
 if __name__ == '__main__':
