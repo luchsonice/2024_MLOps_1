@@ -48,14 +48,13 @@ def train(config = None, config_name = None):
         monitor="val_loss", patience=3, verbose=True, mode="min"
     )
     # Create Wandb logger
-    wandb_logger = WandbLogger(config=config, project="MLOps_Project", entity="luxonice")
+    #wandb_logger = WandbLogger(config=config, project="MLOps_Project", entity="luxonice")
 
     # Create trainer
     trainer = Trainer(
         callbacks=[checkpoint_callback, early_stopping_callback],
         accelerator="auto",
         max_epochs=num_epochs,
-        logger=wandb_logger,
         log_every_n_steps=1
         )
 
