@@ -5,6 +5,7 @@ matplotlib
 wandb
 dvc
 dvc[gdrive]
+dvc[gs]
 tqdm
 tensorboard
 pytorch-lightning
