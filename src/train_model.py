@@ -8,109 +8,72 @@ import logging
 import datetime
 import argparse
 import yaml
-from torch.utils.tensorboard import SummaryWriter
+import pytorch_lightning
+#from torch.utils.tensorboard import SummaryWriter
 logging.basicConfig(format="%(asctime)s - %(levelname)s: %(message)s", level=logging.INFO, datefmt="%I:%M:%S")
-from src.models.model import resnet18 as ResNet
 import wandb
 import hydra
 from omegaconf import DictConfig, OmegaConf
 
 from src.data.make_dataset import get_dataloaders
+from src.models.model import ResNetModel
+
+import wandb
 import timm
+import os
+
+from pytorch_lightning import Trainer
+from pytorch_lightning.loggers import WandbLogger
+from pytorch_lightning.callbacks import ModelCheckpoint, EarlyStopping
+
 
 def create_result_folders(experiment_name):
     os.makedirs("results", exist_ok=True)
     os.makedirs(os.path.join("results", experiment_name), exist_ok=True)
 
-def train(config = None, config_name = None):
-    with wandb.init(config=config, 
-                    project="MLOps_Project",
-                    entity="luxonice",):
-        print(wandb.config)
-        device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')  
-        print(f"Model will run on {device}")
+def train(config_file = None):
+    with open(config_file, 'r') as file:
+        config = yaml.safe_load(file)
+    
+    hyperparameters = config['hyperparameters']
+    batch_size = hyperparameters['batch_size']
+    lr = hyperparameters['lr']
+    num_epochs = hyperparameters['num_epochs']
+    time_stamp = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
 
-        batch_size = wandb.config.batch_size
-        lr = wandb.config.lr
-        num_epochs = wandb.config.num_epochs
-        time_stamp = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+    model = ResNetModel('resnet18', lr=lr)
+    
+    # split config_path
+    if config_file is not None:
+        experiment_name = config_file.split('/')[-1].split('.')[0]
+    else:
+        experiment_name = "sweep"
 
-        # split config_path
-        if config is not None:
-            experiment_name = config_name
-            logger = SummaryWriter(os.path.join("runs", experiment_name, time_stamp))
-        else:
-            experiment_name = "sweep"
-            logger = SummaryWriter(os.path.join("sweeps", experiment_name, time_stamp))
-        
-        create_result_folders(os.path.join(experiment_name, time_stamp))
-        trainloader, valloader, _ = get_dataloaders(batch_size)
+    create_result_folders(os.path.join(experiment_name, time_stamp))
+    trainloader, valloader, _ = get_dataloaders(batch_size)
+    
+    model_path = os.path.join("models", experiment_name, time_stamp)
+    os.makedirs(model_path, exist_ok=True)
+    checkpoint_callback = ModelCheckpoint(
+        dirpath=model_path, monitor="val_loss", mode="min"
+    )
+    early_stopping_callback = EarlyStopping(
+        monitor="val_loss", patience=3, verbose=True, mode="min"
+    )
+    wandb_logger = WandbLogger(config=config, project="MLOps_Project", entity="luxonice")
 
-        #model = ResNet()
-        model = timm.create_model('resnet18', pretrained=True,num_classes=2)
-        optimizer = optim.AdamW(model.parameters(), lr=lr)
-        lossfunc = torch.nn.CrossEntropyLoss()
+    trainer = Trainer(
+        callbacks=[checkpoint_callback, early_stopping_callback],
+        accelerator="auto",
+        max_epochs=num_epochs,
+        logger=wandb_logger,
+        log_every_n_steps=1
+        )
 
-        l = len(trainloader)
-        val_loss_current = np.inf
-
-        for epoch in range(1, num_epochs + 1):
-            logging.info(f"Starting epoch {epoch}:")
-            num_batches = tqdm(trainloader)
-            model.train()
-
-            for i, (image, label) in enumerate(num_batches):
-                image = image.to(device)
-                label = label.to(device)
-
-                with torch.cuda.amp.autocast():
-                    prediction = model(image)
-                    loss = lossfunc(prediction,label)
-                
-                optimizer.zero_grad()
-                loss.backward()
-                optimizer.step()
-
-                wandb.log({'train loss': loss})
-
-                num_batches.set_postfix(MSE=loss.item())
-                logger.add_scalar("train MSE", loss.item(), global_step=epoch * l + i)
-            # time stamp
-            
-            num_batches_val = tqdm(valloader)
-            model.eval()
-            # pick a random integer between 0 and len(valloader)
-            random_idx = random.randint(0, len(valloader)-1)
-            val_loss = 0
-            for i, (image, label) in enumerate(num_batches_val):
-                image = image.to(device)
-                label = label.to(device)
-                
-                with torch.cuda.amp.autocast():
-                    prediction = model(image) # prediction
-                    val_loss += lossfunc(prediction,label).item() # loss between noise and predicted noise
-
-                if i == random_idx:
-                    random_image = image
-                    random_label = label
-                    if random_image.shape[0] > 4:
-                        random_image = random_image[:4]
-                        random_label = random_label[:4]
-
-            val_loss /= len(valloader)
-
-            wandb.log({'val loss': val_loss})
-
-            logger.add_scalar("val MSE", val_loss, global_step=epoch)
-            
-            if val_loss < val_loss_current:
-                val_loss_current = val_loss
-                os.makedirs(os.path.join("models", experiment_name, time_stamp), exist_ok=True)
-                torch.save(model.state_dict(), os.path.join("models", experiment_name, time_stamp, f"weights-{epoch}.pt"))
-
+    trainer.fit(model, trainloader, valloader)
 
 # Uses hydra to load the config file
-@hydra.main(version_base=None, config_path="..\configs", config_name="config")
+@hydra.main(version_base=None, config_path=".." + os.sep + "configs", config_name="config")
 def main(cfg : DictConfig) -> None:
     # Store name from config file
     config_name = cfg.name
