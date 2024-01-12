@@ -8,3 +8,6 @@ dvc[gdrive]
 tqdm
 tensorboard
 pytorch-lightning
+hydra-core
+omegaconf
+pytest

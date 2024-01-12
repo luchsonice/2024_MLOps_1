@@ -1,4 +1,5 @@
 # Training configuration
+name: "config"
 hyperparameters:
   batch_size: 64
   lr: 0.001

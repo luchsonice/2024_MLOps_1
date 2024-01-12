@@ -11,12 +11,16 @@ import yaml
 import pytorch_lightning
 #from torch.utils.tensorboard import SummaryWriter
 logging.basicConfig(format="%(asctime)s - %(levelname)s: %(message)s", level=logging.INFO, datefmt="%I:%M:%S")
+import wandb
+import hydra
+from omegaconf import DictConfig, OmegaConf
 
 from src.data.make_dataset import get_dataloaders
 from src.models.model import ResNetModel
 
 import wandb
 import timm
+import os
 
 from pytorch_lightning import Trainer
 from pytorch_lightning.loggers import WandbLogger
@@ -68,10 +72,17 @@ def train(config_file = None):
 
     trainer.fit(model, trainloader, valloader)
 
+# Uses hydra to load the config file
+@hydra.main(version_base=None, config_path=".." + os.sep + "configs", config_name="config")
+def main(cfg : DictConfig) -> None:
+    # Store name from config file
+    config_name = cfg.name
+    # Store hyperparameters from config file as a dict
+    config = dict(cfg.hyperparameters)    
+    # Train the model with the given hyperparameters
+    train(config, config_name)
+    
+
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser()
-    parser.add_argument('--config', type=str, default='configs/config.yaml')
-    args = parser.parse_args()
-    config = args.config
-    train(config)
+    main()
