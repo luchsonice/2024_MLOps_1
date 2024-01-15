@@ -124,8 +124,8 @@ def get_dataloaders(batch_size: int = 64, **kwargs) -> tuple[torch.utils.data.Da
     val_dataset = torch.utils.data.TensorDataset(val_images_tensor, val_labels_tensor)
     test_dataset = torch.utils.data.TensorDataset(test_images_tensor, test_labels_tensor)
 
-    train_loader = torch.utils.data.DataLoader(train_dataset, batch_size=batch_size, shuffle=True, **kwargs)
-    val_loader = torch.utils.data.DataLoader(val_dataset, batch_size=batch_size, shuffle=False, **kwargs)
-    test_loader = torch.utils.data.DataLoader(test_dataset, batch_size=batch_size, shuffle=False, **kwargs)
+    train_loader = torch.utils.data.DataLoader(train_dataset, batch_size=batch_size, shuffle=True, num_workers=0, **kwargs)
+    val_loader = torch.utils.data.DataLoader(val_dataset, batch_size=batch_size, shuffle=False, num_workers=0, **kwargs)
+    test_loader = torch.utils.data.DataLoader(test_dataset, batch_size=batch_size, shuffle=False, num_workers=0, **kwargs)
 
     return train_loader, val_loader, test_loader
