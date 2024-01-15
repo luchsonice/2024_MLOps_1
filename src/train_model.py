@@ -42,7 +42,7 @@ def train(config = None, config_name = None):
 
     # Create callbacks
     checkpoint_callback = ModelCheckpoint(
-        dirpath=model_path, monitor="val_loss", mode="min"
+        dirpath=model_path, monitor="val_loss", mode="min", save_top_k=1
     )
     early_stopping_callback = EarlyStopping(
         monitor="val_loss", patience=3, verbose=True, mode="min"
