@@ -60,7 +60,7 @@ end of the project.
 * [X] Remember to comply with good coding practices (`pep8`) while doing the project
 * [ ] Do a bit of code typing and remember to document essential parts of your code
 * [X] Setup version control for your data or part of your data
-* [ ] Construct one or multiple docker files for your code
+* [X] Construct one or multiple docker files for your code
 * [X] Build the docker files locally and make sure they work as intended
 * [X] Write one or multiple configurations files for your experiments
 * [X] Used Hydra to load the configurations and manage your hyperparameters
@@ -75,10 +75,10 @@ end of the project.
 * [X] Write unit tests related to the data part of your code
 * [X] Write unit tests related to model construction and or model training
 * [ ] Calculate the coverage.
-* [ ] Get some continuous integration running on the github repository
-* [ ] Create a data storage in GCP Bucket for you data and preferable link this with your data version control setup
-* [ ] Create a trigger workflow for automatically building your docker images
-* [ ] Get your model training in GCP using either the Engine or Vertex AI
+* [X] Get some continuous integration running on the github repository
+* [X] Create a data storage in GCP Bucket for you data and preferable link this with your data version control setup
+* [X] Create a trigger workflow for automatically building your docker images
+* [X] Get your model training in GCP using either the Engine or Vertex AI
 * [ ] Create a FastAPI application that can do inference using your model
 * [ ] If applicable, consider deploying the model locally using torchserve
 * [ ] Deploy your model in GCP using either Functions or Run as the backend
@@ -129,7 +129,7 @@ s194369, s194340, s194331, s194349
 >
 > Answer:
 
-We have in our project used different third-party framework for different functionality. We have first used pytorch lighting for our model. Where we used the ResNet class and more specific we used the model resnet18, in which we used the pre-trained model. We also used hydra to train with hyperparamters. Another third-party we used was Weights & Biases to log training progress.
+We have in our project used different third-party frameworks for different functionalities. We have first used pytorch lighting for our model. From timm we used the pretrained ResNet class and to be more specific we used the model resnet18. We also used hydra to train with hyperparamters. Another third-party we used was Weights & Biases to log training progress.
 
 ## Coding environment
 

@@ -2,7 +2,7 @@
 method: bayes
 name: "sweep"
 metric:
-  name: val loss
+  name: val_loss
   goal: minimize
 parameters:
   name: 
