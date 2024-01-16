@@ -17,11 +17,16 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v2
 
+      - id: 'auth'
+        uses: 'google-github-actions/auth@v2'
+        with:
+          credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
+      
       - uses: iterative/setup-dvc@v1
       - name: Get data
-        run: dvc pull
-        env:
-          GDRIVE_CREDENTIALS_DATA: '${{ secrets.GCP_CREDENTIALS }}'
+        run: |
+          dvc pull
+          python src/data/make_dataset.py
 
       - name: Build Docker Image
         run: docker build . --file dockerfiles/train_model.dockerfile --tag my-image-name:$(date +%s)
