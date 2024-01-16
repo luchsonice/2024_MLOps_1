@@ -1,8 +1,6 @@
 import torch
 from torchvision import datasets, transforms
 import os
-import matplotlib.pyplot as plt
-import numpy as np
 from torchvision.transforms import v2
 
 from src.data import _DATA_MEAN, _DATA_STD
