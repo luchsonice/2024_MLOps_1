@@ -1,4 +1,5 @@
 import torch
+from pytorch_lightning import Trainer
 
 def predict(
     model: torch.nn.Module,
@@ -14,4 +15,5 @@ def predict(
         Tensor of shape [N, d] where N is the number of samples and d is the output dimension of the model
 
     """
-    return torch.cat([model(batch) for batch in dataloader], 0)
+    trainer = Trainer()
+    return torch.concat(trainer.predict(model, dataloader))
