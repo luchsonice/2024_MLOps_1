@@ -1,9 +1,9 @@
 import torch
 from torchvision import datasets, transforms
 import os
-import matplotlib.pyplot as plt
-import numpy as np
 from torchvision.transforms import v2
+
+from src.data import _DATA_MEAN, _DATA_STD
 
 os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
 
@@ -14,6 +14,7 @@ if __name__ == "__main__":
     transform = transforms.Compose([
         transforms.ToTensor(),
         #transforms.Normalize([0.5, 0.5, 0.5], [0.5, 0.5, 0.5])
+        transforms.Normalize(_DATA_MEAN, _DATA_STD)
         ])
 
     # Create datasets
@@ -62,13 +63,13 @@ if __name__ == "__main__":
     test_labels_tensor = torch.concat(test_labels_tensor, dim=0)
 
     # Normalize images based on mean and std of training set
-    print('Processing data')
-    mean = torch.mean(train_images_tensor)
-    std = torch.std(train_images_tensor)
-    print(f'mean = {mean}, std = {std}')
-    train_images_tensor = (train_images_tensor - mean) / std
-    val_images_tensor = (val_images_tensor - mean) / std
-    test_images_tensor = (test_images_tensor - mean) / std
+    # print('Processing data')
+    # mean = torch.mean(train_images_tensor, dim=[0,2,3], keepdim=True)
+    # std = torch.std(train_images_tensor, dim=[0,2,3], keepdim=True)
+    # print(f'mean = {mean}, std = {std}')
+    # train_images_tensor = (train_images_tensor - mean) / std
+    # val_images_tensor = (val_images_tensor - mean) / std
+    # test_images_tensor = (test_images_tensor - mean) / std
 
     # Save processed images and labels
     print('Saving processed data')
@@ -124,8 +125,8 @@ def get_dataloaders(batch_size: int = 64, **kwargs) -> tuple[torch.utils.data.Da
     val_dataset = torch.utils.data.TensorDataset(val_images_tensor, val_labels_tensor)
     test_dataset = torch.utils.data.TensorDataset(test_images_tensor, test_labels_tensor)
 
-    train_loader = torch.utils.data.DataLoader(train_dataset, batch_size=batch_size, shuffle=True, **kwargs)
-    val_loader = torch.utils.data.DataLoader(val_dataset, batch_size=batch_size, shuffle=False, **kwargs)
-    test_loader = torch.utils.data.DataLoader(test_dataset, batch_size=batch_size, shuffle=False, **kwargs)
+    train_loader = torch.utils.data.DataLoader(train_dataset, batch_size=batch_size, shuffle=True, num_workers=0, **kwargs)
+    val_loader = torch.utils.data.DataLoader(val_dataset, batch_size=batch_size, shuffle=False, num_workers=0, **kwargs)
+    test_loader = torch.utils.data.DataLoader(test_dataset, batch_size=batch_size, shuffle=False, num_workers=0, **kwargs)
 
     return train_loader, val_loader, test_loader

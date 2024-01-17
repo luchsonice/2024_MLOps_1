@@ -6,12 +6,14 @@ RUN apt update && \
     apt clean && rm -rf /var/lib/apt/lists/*
 
 COPY requirements.txt requirements.txt
+RUN pip install -r requirements.txt --no-cache-dir
+
 COPY pyproject.toml pyproject.toml
 COPY src/ src/
 COPY data/ data/
+COPY configs/ configs/
 
 WORKDIR /
-RUN pip install -r requirements.txt --no-cache-dir
-RUN pip install . --no-deps --no-cache-dir
+RUN pip install -e . --no-deps --no-cache-dir
 
 ENTRYPOINT ["python", "-u", "src/train_model.py"]

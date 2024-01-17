@@ -43,6 +43,9 @@ data:
 train:
 	python $(PROJECT_NAME)/train_model.py
 
+sweep:
+	python $(PROJECT_NAME)/sweep.py
+
 #################################################################################
 # Documentation RULES                                                           #
 #################################################################################

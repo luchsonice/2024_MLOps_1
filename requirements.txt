@@ -12,3 +12,5 @@ pytorch-lightning
 hydra-core
 omegaconf
 pytest
+fastapi
+uvicorn[standard]
