@@ -129,7 +129,7 @@ s194369, s194340, s194331, s194349
 >
 > Answer:
 
-We have in our project used different third-party frameworks for different functionalities. We have used PyTorch Image Models, also known as TIMM, and from this we used the pretrained ResNet class, more specifically we used the model resnet18. We have also used Pytorch Lighting for our model to reduce the amount of boilerplate. Another third-party we used was Weights & Biases to log training progress.
+We have in our project used different third-party frameworks for different functionalities. We have used pytorch lighting as boilerplate for our model. From timm we used the pretrained ResNet class and to be more specific we used the model resnet18. We also used hydra to train with hyperparamters which we later scraped for another third-party framework, namely Weights & Biases. W&B was used to log training progress and run sweeps.
 
 ## Coding environment
 
@@ -148,7 +148,7 @@ We have in our project used different third-party frameworks for different funct
 >
 > Answer:
 
-Our packages are managed in a conda environment. Therefor the required packages for our project is in the requirements.txt this file can be found in the top folder of our projects structure which is created using cookiecutter. In this file we have all our packages and the versions used in this project. We have also a a make file which includes how to set up environment, requriments etc. To get a complete copy of our development environment one would have to run the following comands:
+Our packages are managed in a conda environment. The required packages for our project are in the requirements.txt  file which can be found in the top folder of our projects structure which is created using cookiecutter. We also have a Makefile which includes instructions on how to set up the environment, requriments etc. To get a complete copy of our development environment one would have to run the following comands:
 ```
 git clone https://github.com/luchsonice/2024_MLOps_1.git
 make create_environment
@@ -156,7 +156,6 @@ make requirements
 dvc pull
 make data
 ```
-Also it is assumed that it is python version 10
 
 ### Question 5
 
@@ -171,7 +170,7 @@ Also it is assumed that it is python version 10
 > *experiments.*
 > Answer:
 
-We used the cookiecutter template, so our overall folder struckture follows this. In the cookiecutter structure we have filled out the dvc. In the github folder we have our github workflows (so workflow folder from the template is empty). congigs folder with our Training configuration, the data folder with our data. In the dockfiles folder we the files to make dockerfiles. src folder with our model. The test folder to have our test in. We have not used the notebooks folder, and as mentioned before the workflow folder have we not used because our workflows are in the github folder.
+From the cookiecutter template we have filled out the .dvc , .github, app, configs, data, dockerfiles, reports, tests  and src folder. We have removed the notebooks folder because we did not use any notebooks in our project. We also deleted the workflows folder since we saved our workflows in the .github folder. We have added an wandb folder that contains wandb metadata and logs from running our experiments.
 
 ### Question 6
 
