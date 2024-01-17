@@ -129,7 +129,7 @@ s194369, s194340, s194331, s194349
 >
 > Answer:
 
-We have in our project used different third-party frameworks for different functionalities. We have first used pytorch lighting for our model. Where there is different models, that can be used. From timm we used the pretrained ResNet class and to be more specific we used the model resnet18. We also used hydra to train with hyperparamters. Another third-party we used was Weights & Biases to log training progress.
+We have in our project used different third-party frameworks for different functionalities. We have used pytorch lighting as boilerplate for our model. From timm we used the pretrained ResNet class and to be more specific we used the model resnet18. We also used hydra to train with hyperparamters which we later scraped for another third-party framework, namely Weights & Biases. W&B was used to log training progress and run sweeps.
 
 ## Coding environment
 
@@ -148,7 +148,7 @@ We have in our project used different third-party frameworks for different funct
 >
 > Answer:
 
-Our packages are managed in a conda environment. Therefor the required packages for our project is in the requirements.txt this file can be found in the top folder of our projects structure which is created using cookiecutter. In this file we have all our packages and the versions used in this project. We have also a a make file which includes how to set up environment, requriments etc. To get a complete copy of our development environment one would have to run the following comands:
+Our packages are managed in a conda environment. The required packages for our project are in the requirements.txt  file which can be found in the top folder of our projects structure which is created using cookiecutter. We also have a Makefile which includes instructions on how to set up the environment, requriments etc. To get a complete copy of our development environment one would have to run the following comands:
 ```
 git clone https://github.com/luchsonice/2024_MLOps_1.git
 make create_environment
@@ -156,7 +156,6 @@ make requirements
 dvc pull
 make data
 ```
-Also it is assumed that it is python version 10
 
 ### Question 5
 
@@ -171,7 +170,7 @@ Also it is assumed that it is python version 10
 > *experiments.*
 > Answer:
 
-We used the cookiecutter template, so our overall folder struckture follows this. In the cookiecutter structure we have filled out the dvc. In the github folder we have our github workflows (so workflow folder from the template is empty). congigs folder with our Training configuration, the data folder with our data. In the dockfiles folder we the files to make dockerfiles. src folder with our model. The test folder to have our test in. We have not used the notebooks folder, and as mentioned before the workflow folder have we not used because our workflows are in the github folder.
+From the cookiecutter template we have filled out the .dvc , .github, app, configs, data, dockerfiles, reports, tests  and src folder. We have removed the notebooks folder because we did not use any notebooks in our project. We also deleted the workflows folder since we saved our workflows in the .github folder. We have added an wandb folder that contains wandb metadata and logs from running our experiments.
 
 ### Question 6
 
@@ -183,7 +182,7 @@ We used the cookiecutter template, so our overall folder struckture follows this
 > Answer:
 
 In the project we have written comments. We have tried to do so that our code follows the pep8 compliant, however we have not used any checks to ensure this.
-These concepts matter in large project because when multiple people work on the code it is still important that code is in the same format and when other people (that has not worked with code before) has to use it. It is easier if the quality of the code and format is standard and the same for all the code.
+These concepts matter in large projects because when multiple people work on the code it is still important that code is in the same format and when other people (that have not worked with code before) have to use it. It is easier if the quality of the code and format is standard and the same for all the code.
 
 ## Version control
 
@@ -202,7 +201,7 @@ These concepts matter in large project because when multiple people work on the 
 >
 > Answer:
 
-In total we have implemented 2 united tests. The test_data and test_model files in the tests folder. In the test_data we have a few test for the data. First we test that there is the correct amount om images in test and train. We also test that the dimensions of all images are correct and lastly we test that the labels are correct. Then for the test_model file here we have one test and it tests if we get the correct output given the input. So we have a toatal of 4 tests.
+In total we have implemented 2 unit tests. The test_data and test_model files in the tests folder. In the test_data we have a few test for the data. First we test that there is the correct amount om images in test and train. We also test that the dimensions of all images are correct and lastly we test that the labels are correct. Then for the test_model file here we have one test and it tests if we get the correct output given the input. So we have a toatal of 4 tests.
 
 ### Question 8
 
@@ -232,7 +231,7 @@ In total we have implemented 2 united tests. The test_data and test_model files 
 >
 > Answer:
 
-In the project we used branches, we used these when we were working at different parts, to both protect the main and also so it was easier when different people were implementing different parts. We would therefor also use pull request, however to make it easier the pull request would only contain one new feature. This helped making sure that we did not have to many branches at once but also making mering the branches with main easier, since it would only be a few new things. When a pull request was done we would look it over and also try the code to ensure it worked.
+In the project we used branches, we used these when we were working at different parts, to both protect the main and also so it was easier when different people were implementing different parts. We would therefore also use pull request, however to make it easier the pull request would only contain one new feature. This helped making sure that we did not have to many branches at once but also making mering the branches with main easier, since it would only be a few new things. When a pull request was done we would look it over and also try the code to ensure it worked.
 
 ### Question 10
 
@@ -247,7 +246,7 @@ In the project we used branches, we used these when we were working at different
 >
 > Answer:
 
-We did in our project use DVC for managing data. We first stored our data on google drive but also ended up using google cloud later on. We did use the whole dataset and did not change anything during the project so here perhaps the fact we used DVC was not so important. However if we had to add more data or change (could be only using a subset of the data) the data then DVC could have helped with that with it's version control. One thing DVC did was making it easy to get the data and if someone else had to use our project it would be very easy for them to get the data, since it only requires a few commands.
+We did in our project use DVC for managing data. We first stored our data on google drive but also ended up using google cloud later on. We did use the whole dataset and did not change anything during the project so here perhaps the fact we used DVC was not so important. However if we had to add more data or change (could be only using a subset of the data) the data then DVC could have helped with that with its version control. One thing DVC did was making it easy to get the data and if someone else had to use our project it would be very easy for them to get the data, since it only requires a few commands.
 
 ### Question 11
 
