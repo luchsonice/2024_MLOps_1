@@ -129,7 +129,7 @@ s194369, s194340, s194331, s194349
 >
 > Answer:
 
-We have in our project used different third-party frameworks for different functionalities. We have first used pytorch lighting for our model. Where there is different models, that can be used. From timm we used the pretrained ResNet class and to be more specific we used the model resnet18. We also used hydra to train with hyperparamters. Another third-party we used was Weights & Biases to log training progress.
+We have in our project used different third-party frameworks for different functionalities. We have used PyTorch Image Models, also known as TIMM, and from this we used the pretrained ResNet class, more specifically we used the model resnet18. We have also used Pytorch Lighting for our model to reduce the amount of boilerplate. Another third-party we used was Weights & Biases to log training progress.
 
 ## Coding environment
 
@@ -183,7 +183,7 @@ We used the cookiecutter template, so our overall folder struckture follows this
 > Answer:
 
 In the project we have written comments. We have tried to do so that our code follows the pep8 compliant, however we have not used any checks to ensure this.
-These concepts matter in large project because when multiple people work on the code it is still important that code is in the same format and when other people (that has not worked with code before) has to use it. It is easier if the quality of the code and format is standard and the same for all the code.
+These concepts matter in large projects because when multiple people work on the code it is still important that code is in the same format and when other people (that have not worked with code before) have to use it. It is easier if the quality of the code and format is standard and the same for all the code.
 
 ## Version control
 
@@ -202,7 +202,7 @@ These concepts matter in large project because when multiple people work on the 
 >
 > Answer:
 
-In total we have implemented 2 united tests. The test_data and test_model files in the tests folder. In the test_data we have a few test for the data. First we test that there is the correct amount om images in test and train. We also test that the dimensions of all images are correct and lastly we test that the labels are correct. Then for the test_model file here we have one test and it tests if we get the correct output given the input. So we have a toatal of 4 tests.
+In total we have implemented 2 unit tests. The test_data and test_model files in the tests folder. In the test_data we have a few test for the data. First we test that there is the correct amount om images in test and train. We also test that the dimensions of all images are correct and lastly we test that the labels are correct. Then for the test_model file here we have one test and it tests if we get the correct output given the input. So we have a toatal of 4 tests.
 
 ### Question 8
 
@@ -232,7 +232,7 @@ In total we have implemented 2 united tests. The test_data and test_model files 
 >
 > Answer:
 
-In the project we used branches, we used these when we were working at different parts, to both protect the main and also so it was easier when different people were implementing different parts. We would therefor also use pull request, however to make it easier the pull request would only contain one new feature. This helped making sure that we did not have to many branches at once but also making mering the branches with main easier, since it would only be a few new things. When a pull request was done we would look it over and also try the code to ensure it worked.
+In the project we used branches, we used these when we were working at different parts, to both protect the main and also so it was easier when different people were implementing different parts. We would therefore also use pull request, however to make it easier the pull request would only contain one new feature. This helped making sure that we did not have to many branches at once but also making mering the branches with main easier, since it would only be a few new things. When a pull request was done we would look it over and also try the code to ensure it worked.
 
 ### Question 10
 
@@ -247,7 +247,7 @@ In the project we used branches, we used these when we were working at different
 >
 > Answer:
 
-We did in our project use DVC for managing data. We first stored our data on google drive but also ended up using google cloud later on. We did use the whole dataset and did not change anything during the project so here perhaps the fact we used DVC was not so important. However if we had to add more data or change (could be only using a subset of the data) the data then DVC could have helped with that with it's version control. One thing DVC did was making it easy to get the data and if someone else had to use our project it would be very easy for them to get the data, since it only requires a few commands.
+We did in our project use DVC for managing data. We first stored our data on google drive but also ended up using google cloud later on. We did use the whole dataset and did not change anything during the project so here perhaps the fact we used DVC was not so important. However if we had to add more data or change (could be only using a subset of the data) the data then DVC could have helped with that with its version control. One thing DVC did was making it easy to get the data and if someone else had to use our project it would be very easy for them to get the data, since it only requires a few commands.
 
 ### Question 11
 
