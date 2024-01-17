@@ -2,8 +2,8 @@
 name:
   value: "config"
 batch_size:
-  value: 64
+  value: 128
 lr:
-  value: 0.001
+  value: 0.0006332
 num_epochs:
-  value: 2
+  value: 20

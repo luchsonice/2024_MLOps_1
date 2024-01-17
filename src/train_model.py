@@ -17,7 +17,7 @@ def create_result_folders(config_name):
     os.makedirs(os.path.join("results", config_name), exist_ok=True)
 
 def train(config = None):
-    with wandb.init(config=config):
+    with wandb.init(config=config, project="MLOps_Project", entity="luxonice"):
         # If called by wandb.agent, as below,
         # this config will be set by Sweep Controller
         config = wandb.config

@@ -71,7 +71,7 @@ if __name__ == "__main__":
     # val_images_tensor = (val_images_tensor - mean) / std
     # test_images_tensor = (test_images_tensor - mean) / std
 
-    # Save processed images and labels
+    # Save processed images and their labels
     print('Saving processed data')
     torch.save(train_images_tensor, data_processed_path + "train_images.pt")
     torch.save(train_labels_tensor, data_processed_path + "train_labels.pt")
