@@ -358,7 +358,7 @@ In our project, reproducibility is very important. To address this, we chose to 
 >
 > Answer:
 
-When running into bugs in the project we used different things we have used print statements but also used pdb,cProfile and Pytorch Lightning debugger to debug the code. However when using the debugger it did not result in a clear statement what the underlying problem were. This was due to the fact that built-in functions took much of the time and whitout changing the source code there is no way to improve (even if, the built-in functions are often already optimal). Another case was where we ran out of memory, giving us different results when profiling each run. Hence, we tried removing elements in our code until we found the error. Profiling added some value in this project but not as much as it could have.
+When running into bugs in the project we used different things we have used print statements but also used pdb,cProfile and Pytorch Lightning debugger to debug the code. However when using the debugger it did not result in a clear statement what the underlying problem were. This was due to the fact that built-in functions took much of the time and whitout changing the source code there is no way to improve (even if, the built-in functions are often already optimal). Another case was where we ran out of memory, giving us different results when profiling each run. Hence, we tried removing elements in our code until we found the error. Profiling added some value in this project but not as much as it could
 
 ## Working in the cloud
 
