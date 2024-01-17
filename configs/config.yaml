@@ -6,4 +6,4 @@ batch_size:
 lr:
   value: 0.0006332
 num_epochs:
-  value: 10
+  value: 20
