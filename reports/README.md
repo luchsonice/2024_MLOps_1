@@ -129,7 +129,7 @@ s194369, s194340, s194331, s194349
 >
 > Answer:
 
-We have in our project used different third-party frameworks for different functionalities. We have used pytorch lighting as boilerplate for our model. From timm we used the pretrained ResNet class and to be more specific we used the model resnet18. We also used hydra to train with hyperparamters which we later scraped for another third-party framework, namely Weights & Biases. W&B was used to log training progress and run sweeps.
+We have in our project used different third-party frameworks for different functionalities. We have used Pytorch lighting as boilerplate, providing a structured foundation for our model. From Timm we used the pretrained ResNet class and to be more specific we used the model resnet18. We also used hydra to train with hyperparameters which we later scraped for instead using another third-party framework, namely Weights & Biases. W&B was for used logging training progress and conducting parameter sweeps. Which helped us a lot during our project. So overall, we have in this project tried different frameworks to see what fit our project the best. 
 
 ## Coding environment
 
@@ -148,7 +148,7 @@ We have in our project used different third-party frameworks for different funct
 >
 > Answer:
 
-Our packages are managed in a conda environment. The required packages for our project are in the requirements.txt  file which can be found in the top folder of our projects structure which is created using cookiecutter. We also have a Makefile which includes instructions on how to set up the environment, requriments etc. To get a complete copy of our development environment one would have to run the following comands:
+Our packages are managed in a conda environment to manage packages, ensuring reproducibility and dependency management. The required packages for our project are in the requirements.txt file which can be found in the top folder of our projects structure which is created using cookie cutter. We also have a Makefile which includes instructions on how to set up the environment, package installation, get the data and run our model. To get a complete copy of our development environment one would have to run the following commands:
 ```
 git clone https://github.com/luchsonice/2024_MLOps_1.git
 make create_environment
@@ -156,6 +156,8 @@ make requirements
 dvc pull
 make data
 ```
+After these comands the basics is set up the model can now be run
+
 
 ### Question 5
 
@@ -170,7 +172,8 @@ make data
 > *experiments.*
 > Answer:
 
-From the cookiecutter template we have filled out the .dvc , .github, app, configs, data, dockerfiles, reports, tests  and src folder. We have removed the notebooks folder because we did not use any notebooks in our project. We also deleted the workflows folder since we saved our workflows in the .github folder. We have added an wandb folder that contains wandb metadata and logs from running our experiments.
+We have in our project used the cookiecutter template, however since we have not used all the folder and also add some folder ourself. We have made som changes compared to folder structure given from the cookiecutter template.
+From the cookiecutter template we have filled out the .dvc, .github, app, configs, data, dockerfiles, reports, tests  and src folder. We have removed the notebooks folder because we did not use any notebooks in our project. We also deleted the workflows folder since we saved our workflows in the .github folder. We have added an wandb folder that contains wandb metadata and logs from running our experiments.
 
 ### Question 6
 
