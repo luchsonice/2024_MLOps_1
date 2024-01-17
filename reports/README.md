@@ -320,8 +320,11 @@ In our project we made use of config files for hyperparameters and we used wandb
 >
 > Answer:
 
-In Wanb we have used have first tracked the loss
-![my_image](figures/q14-trainloss.png)
+In Wanb we have used have first tracked the training loss <br />
+![my_image](figures/q14-trainloss.png)<br />
+We can see that we have a decrease in the training loss for the first many steps and around 20 steps for some of the models the loss flatten out or even decrasing. We have also tracked the validation loss  <br />
+![my_image](figures/q14-valloss.png)<br />
+
 
 ### Question 15
 
