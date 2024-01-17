@@ -341,7 +341,7 @@ Which is good for seeing more in-depth information about the hyperparameters and
 >
 > Answer:
 
---- question 15 fill here ---
+In our project, reproducibility is very important. To address this, we chose to use Docker files. This choice was motivated by the desire to create an environment that is consistent and easily replicable across various devices and platforms. By using Docker in our project, it helps to ensure that our entire workflow, from model training to predictions, remains reproducible and consistent. For our project, we have created specific Docker files for model training and model prediction. These Docker files contains the necessary dependencies, libraries, and configurations. The link to our two docker files (for model and prediction) are: xxx and xxxx
 
 ### Question 16
 
