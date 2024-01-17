@@ -184,3 +184,6 @@ cython_debug/
 # Outputs from Hydra
 outputs/
 multirun/
+
+# Pickle files
+*.pickle
