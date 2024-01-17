@@ -321,7 +321,7 @@ In our project we made use of config files for hyperparameters and we used wandb
 > Answer:
 
 In Wanb we have used have first tracked the loss
-![plot](reports\figures\q14-trainloss.png)
+![my_image](figures/q14-trainloss.png)
 
 ### Question 15
 
