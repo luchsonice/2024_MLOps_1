@@ -58,7 +58,7 @@ end of the project.
 * [X] Add a model file and a training script and get that running
 * [X] Remember to fill out the `requirements.txt` file with whatever dependencies that you are using
 * [X] Remember to comply with good coding practices (`pep8`) while doing the project
-* [ ] Do a bit of code typing and remember to document essential parts of your code
+* [X] Do a bit of code typing and remember to document essential parts of your code
 * [X] Setup version control for your data or part of your data
 * [X] Construct one or multiple docker files for your code
 * [X] Build the docker files locally and make sure they work as intended
@@ -79,7 +79,7 @@ end of the project.
 * [X] Create a data storage in GCP Bucket for you data and preferable link this with your data version control setup
 * [X] Create a trigger workflow for automatically building your docker images
 * [X] Get your model training in GCP using either the Engine or Vertex AI
-* [ ] Create a FastAPI application that can do inference using your model
+* [X] Create a FastAPI application that can do inference using your model
 * [ ] If applicable, consider deploying the model locally using torchserve
 * [ ] Deploy your model in GCP using either Functions or Run as the backend
 
@@ -129,7 +129,7 @@ s194369, s194340, s194331, s194349
 >
 > Answer:
 
-We have in our project used different third-party frameworks for different functionalities. We have first used pytorch lighting for our model. From timm we used the pretrained ResNet class and to be more specific we used the model resnet18. We also used hydra to train with hyperparamters. Another third-party we used was Weights & Biases to log training progress.
+We have in our project used different third-party frameworks for different functionalities. We have first used pytorch lighting for our model. Where there is different models, that can be used. From timm we used the pretrained ResNet class and to be more specific we used the model resnet18. We also used hydra to train with hyperparamters. Another third-party we used was Weights & Biases to log training progress.
 
 ## Coding environment
 
@@ -171,7 +171,7 @@ Also it is assumed that it is python version 10
 > *experiments.*
 > Answer:
 
-We used the cookiecutter template and in this we have filled out the congigs folder with our Training configuration, the data folder with our data src folder with our model The test folder to have our test in.
+We used the cookiecutter template, so our overall folder struckture follows this. In the cookiecutter structure we have filled out the dvc. In the github folder we have our github workflows (so workflow folder from the template is empty). congigs folder with our Training configuration, the data folder with our data. In the dockfiles folder we the files to make dockerfiles. src folder with our model. The test folder to have our test in. We have not used the notebooks folder, and as mentioned before the workflow folder have we not used because our workflows are in the github folder.
 
 ### Question 6
 
@@ -247,7 +247,7 @@ In the project we used branches, we used these when we were working at different
 >
 > Answer:
 
-We did in our project use DVC for managing data. We stored our data on google drive. We did use the whole dataset and did not change anything during the project so here perhaps the fact we used DVC was not so important. However if we had to add more data or change (could be only using a subset of the data) the data then DVC could have helped with that with it's version control. One thing DVC did was making it easy to get the data and if someone else had to use our project it would be very easy for them to get the data, since it only requires a few commands.
+We did in our project use DVC for managing data. We first stored our data on google drive but also ended up using google cloud later on. We did use the whole dataset and did not change anything during the project so here perhaps the fact we used DVC was not so important. However if we had to add more data or change (could be only using a subset of the data) the data then DVC could have helped with that with it's version control. One thing DVC did was making it easy to get the data and if someone else had to use our project it would be very easy for them to get the data, since it only requires a few commands.
 
 ### Question 11
 
@@ -303,7 +303,7 @@ For Weights and Biases the configuration file is simply just given in the WandbL
 >
 > Answer:
 
---- question 13 fill here ---
+In our project we made use of config files for hyperparameters and we used wandb. This makes it easy to see what parameters are used to train with. To be able to track the parameters used wandb In our github repository we have a folder called wandb, which has a config file that has our parameters. Also in wandb  it is possible to see all experimentes runed with the hyperparamters used. So to reproduce an experiment one would update the configs files in the folder configs with the parameters from the experimnet which they want to reproduced found using either the folder wandb or on the wandb website. To be able reproduce the exact results one would also need to set a seed in the config file.  
 
 ### Question 14
 
