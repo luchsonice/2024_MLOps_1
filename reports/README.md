@@ -320,12 +320,13 @@ In our project we made use of config files for hyperparameters and we used wandb
 >
 > Answer:
 
-In Wanb we have used have first tracked the training loss <br />
+In W&B there is many different things there is tracked. So, for this report we have chosen three different tracks to show the experiments we have done in W&B. The first tracked we have chosen is the training loss. 
 ![my_image](figures/q14-trainloss.png)<br />
-We can see that we have a decrease in the training loss for the first many steps and around 20 steps for some of the models the loss flatten out or even decrasing. We have also tracked the validation loss  <br />
+We can see that we have a decrease in the training loss. The training loss is good for seeing how our model is learning when training on the training data and if perhaps we need to change anything in or model. With the training loss we will be able to detect if the model is overfitting. The training loss however only tells us about what happens when train so to get a better understanding of the model we also need to look outside the training so the next track is of the validation loss.
 ![my_image](figures/q14-valloss.png)<br />
-Here we see the validation loss as we can also see above we have runed with different parameters. And in the gray one that has the most steps we can also see how the validation loss decreacse a bit but then after around 100 steps stabilizes. The validation loss is important monitor performance when presented with data it has not trained on.
+Here we see the validation loss, again we see it for different runs. The validation loss is important since it monitor performance when presented with data the model has not trained on. And is there for important together with the train loss to understand the model’s performance. The last tracking, we include in this report is the sweep of the hyperparameters.
 ![my_image](figures/q14-sweep.png)<br />
+Which is good for seeing more in-depth information about the hyperparameters and how to tune them.
 
 ### Question 15
 
