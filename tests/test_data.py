@@ -12,16 +12,13 @@ from src.data.make_dataset import get_dataloaders
     os.path.exists("data/processed/test_labels.pt")
 ), reason="Data files not found")
 def test_data():
-    # Test that there is the correct amount om images in test and train
-    # Test that the dimensions of all images are correct
-    # Test labels
-
+    # Test that there is the correct amount om images in train, valdiation and test
     train_loader, val_loader, test_loader = get_dataloaders(batch_size=64)
-
     assert len(train_loader.dataset) == 716, "Training set has wrong number of samples"
     assert len(val_loader.dataset) == 180, "Validation set has wrong number of samples"
     assert len(test_loader.dataset) == 224, "Test set has wrong number of samples"
 
+    # Test that the dimensions of all images are correct and test labels
     for loader in [train_loader, val_loader, test_loader]:
         unique_labels = torch.Tensor([])
         for images, labels in loader:
