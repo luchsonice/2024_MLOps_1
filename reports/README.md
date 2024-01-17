@@ -350,8 +350,8 @@ For Weights and Biases the configuration file is simply just given in the WandbL
 >
 > Answer:
 
-When running into bugs in the project we mainly used print statements to debug the code. Which helped us with debugging we did not use any build in debuggers this could in hindsight using the debugger from VS code could have been useful. We did however not use so much time debugging compared to all the other things we did in this project.
-We did also run a single profiling on the code. The from the profiling we could see that what took the longest was function which we could not change. So from profiling we did not find anything we could do to make the code farster.
+When running into bugs in the project we used different things we have used print statements a lot. But also used pdb once to debug the code. However when using the debugger it said that everything was the problem. Which did not really help us that much. So we had to try removing elements in our code until we found the error.
+We did also run a single profiling on the code. The from the profiling we could see that what took the longest was function which we could not change. So from profiling we did not find anything we could do to make the code faster.
 
 ## Working in the cloud
 
