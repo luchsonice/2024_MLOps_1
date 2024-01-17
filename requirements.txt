@@ -14,3 +14,4 @@ omegaconf
 pytest
 fastapi
 uvicorn[standard]
+prometheus-fastapi-instrumentator
