@@ -358,8 +358,7 @@ In our project, reproducibility is very important. To address this, we chose to 
 >
 > Answer:
 
-When running into bugs in the project we used different things we have used print statements a lot. But also used pdb once to debug the code. However when using the debugger it said that everything was the problem. Which did not really help us that much. So we had to try removing elements in our code until we found the error.
-We did also run a single profiling on the code. The from the profiling we could see that what took the longest was function which we could not change. So from profiling we did not find anything we could do to make the code faster.
+When running into bugs in the project we used different things we have used print statements but also used pdb,cProfile and Pytorch Lightning debugger to debug the code. However when using the debugger it did not result in a clear statement what the underlying problem were. This was due to the fact that built-in functions took much of the time and whitout changing the source code there is no way to improve (even if, the built-in functions are often already optimal). Another case was where we ran out of memory, giving us different results when profiling each run. Hence, we tried removing elements in our code until we found the error. Profiling added some value in this project but not as much as it could have.
 
 ## Working in the cloud
 
@@ -376,7 +375,13 @@ We did also run a single profiling on the code. The from the profiling we could 
 >
 > Answer:
 
---- question 17 fill here ---
+We used the following GCP services: Compute Engine VM instances, Buckets, Functions as well as Service Accounts.
+
+VM instances are used to outsource computations and further have adjustable resources in regards to the number of cores and memory.
+
+Buckets are Cloud Storages with access control.
+
+Functions is a service that allows to write event-triggered functions, in our case when uploading an image a function is triggered which returns the prediction of the model.
 
 ### Question 18
 
@@ -391,7 +396,16 @@ We did also run a single profiling on the code. The from the profiling we could 
 >
 > Answer:
 
---- question 18 fill here ---
+We used the compute engine to run our sweeps and training, where sweeps (with 20 runs) were run on the high cpu instance and lower-intensive tasks were run on the simpler instance. Since the model craved more than 4GB of memory we had to upgrade to the 8GB memory hardware. We used instances with the following hardware:
+2vCPU (1 core) 8GB memory (e2-standard-2)
+16vCPU (8 core) 16 GB memory (e2-highcpu-16)
+tried to use: GPU P100
+
+The GPU did not work for us as the CUDA Driver was outdated and we did not have permissions to upgrade the driver. Other GPUs which might have newer drivers were unable in several regions we tested.
+
+All instances were initiated using
+    --image-family=pytorch-latest-cpu \
+    --image-project=deeplearning-platform-release
 
 ### Question 19
 
@@ -400,7 +414,8 @@ We did also run a single profiling on the code. The from the profiling we could 
 >
 > Answer:
 
---- question 19 fill here ---
+![my_image](figures/bucket1.png)
+![my_image](figures/bucket2.png)
 
 ### Question 20
 
@@ -463,7 +478,7 @@ We did also run a single profiling on the code. The from the profiling we could 
 >
 > Answer:
 
---- question 24 fill here ---
+We used one account for this project which in total spent x.xx$ whilst developing the model and it's deployment. The high cpu instance was most expensive with an hourly rate of 0.44$. Least expensive were the Functions.
 
 ## Overall discussion of project
 
