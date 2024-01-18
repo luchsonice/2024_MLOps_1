@@ -486,7 +486,7 @@ We did not manage to implement monitoring; it would have been great if we have h
 >
 > Answer:
 
-We used one account for this project which in total spent $3.42 whilst developing the model and it's deployment. The high cpu instance was most expensive with an hourly rate of 0.44$ and in the end being 96.8% of the total cost. Least expensive were the Functions with $0.01.
+We used one account for this project which in total spent \$3.42 whilst developing the model and it's deployment. The high cpu instance was most expensive with an hourly rate of \$0.44 and in the end being 96.8% of the total cost. Least expensive were the Functions with \$0.01.
 
 ## Overall discussion of project
 
