@@ -1,5 +1,5 @@
 steps:
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'gcr.io/mlops1-project/project-image-for-deploy', 'dockerfiles', '-f', 'train_model.dockerfile']
+  args: ['build', '-t', 'gcr.io/mlops1-project/project-image-for-deploy', '.', '-f', 'dockerfiles/train_model.dockerfile']
 - name: 'gcr.io/cloud-builders/docker'
   args: ['push', 'gcr.io/mlops1-project/project-image-for-deploy']
