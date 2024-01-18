@@ -59,7 +59,7 @@ jobs:
       run: |
         dvc pull
         python src/data/make_dataset.py
-  
+
 
     - name: Test with pytest
       run: |

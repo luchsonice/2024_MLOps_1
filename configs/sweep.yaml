@@ -5,11 +5,11 @@ metric:
   name: val_loss
   goal: minimize
 parameters:
-  name: 
+  name:
     value: "sweep"
   batch_size:
     values: [32,64,128,256]
-  lr: 
+  lr:
     min: 0.0001
     max: 0.01
   num_epochs:
