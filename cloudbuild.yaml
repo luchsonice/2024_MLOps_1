@@ -1,5 +1,5 @@
 steps:
-- name: dvc pull
+- name: 'add_dvc'
   args: ['-c', 'pip install -U dvc dvc[gs]; dvc pull;']
 - name: 'gcr.io/cloud-builders/docker'
   args: ['build', '-t', 'gcr.io/mlops1-project/project-image-for-deploy', '.', '-f', 'dockerfiles/train_model.dockerfile']
