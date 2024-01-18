@@ -432,8 +432,8 @@ All instances were initiated using
 > **your project. You can take inspiration from [this figure](figures/build.png).**
 >
 > Answer:
+[my_image](figures/build.png)
 
---- question 21 fill here ---
 
 ### Question 22
 
