@@ -413,9 +413,7 @@ All instances were initiated using
 > **You can take inspiration from [this figure](figures/bucket.png).**
 >
 > Answer:
-
-![my_image](figures/bucket1.png)
-![my_image](figures/bucket2.png)
+![my_image](figures/bucket.png)
 
 ### Question 20
 
@@ -423,8 +421,8 @@ All instances were initiated using
 > **You can take inspiration from [this figure](figures/registry.png).**
 >
 > Answer:
+![my_image](figures/container_registry.png)
 
---- question 20 fill here ---
 
 ### Question 21
 
@@ -478,7 +476,7 @@ We did not manage to implement monitoring; it would have been great if we have h
 >
 > Answer:
 
-We used one account for this project which in total spent x.xx$ whilst developing the model and it's deployment. The high cpu instance was most expensive with an hourly rate of 0.44$. Least expensive were the Functions.
+We used one account for this project which in total spent $3.42 whilst developing the model and it's deployment. The high cpu instance was most expensive with an hourly rate of 0.44$ and in the end being 96.8% of the total cost. Least expensive were the Functions with $0.01.
 
 ## Overall discussion of project
 
@@ -498,8 +496,13 @@ We used one account for this project which in total spent x.xx$ whilst developin
 > *Whenever we commit code and puch to github, it auto triggers ... and ... . From there the diagram shows ...*
 >
 > Answer:
+[my_image](figures/architecture.png)
 
---- question 25 fill here ---
+The starting point of the diagram is our local setup, where we integrated Pytorch Lightning, Conda, Weights and Biases and Hydra into our code. We ended up replacing Hydra with Weights and Biases for our config files, hence it is crossed out. The template of this setup was created using CookieCutter. The development of code was done with the help of Profilers (cProfiler, Pytorch Lightning and pdb). To version control the code we loaded everything into github and for the data into a bucket in Cloud Storage using dvc. 
+
+Whenever we commit code and push to github, it auto triggers github actions performing unit tests and testing whether docker builds an image. Furthermore the Cloud Build is triggered to automatically build a docker image which contionously is pushed to the container registry. From there the diagram shows that this image is consumed by Cloud Run running the container using a virutal machine. The end user makes a request to fastapi application which runs in Cloud Run.
+
+Hence, due to continous integration the user automatically always gets the latest model pushed to main.
 
 ### Question 26
 
