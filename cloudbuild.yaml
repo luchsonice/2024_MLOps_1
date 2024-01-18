@@ -4,7 +4,7 @@ steps:
   args: ['-c', 'pip install -U dvc dvc[gs]; dvc pull;']
   id: 'dvc_pull'
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'gcr.io/mlops1-project/project-image-for-deploy', '.', '-f', 'dockerfiles/train_model.dockerfile']
+  args: ['build', '-t', 'gcr.io/mlops1-project/project-image-for-deploy', '.', '-f', 'dockerfiles/fastapi_app.dockerfile']
 - name: 'gcr.io/cloud-builders/docker'
   args: ['push', 'gcr.io/mlops1-project/project-image-for-deploy']
 # Push the container image to Container Registry
