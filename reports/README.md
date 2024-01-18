@@ -464,7 +464,7 @@ All instances were initiated using
 >
 > Answer:
 
---- question 23 fill here ---
+We did not manage to implement monitoring; it would have been great if we have had the time to implement it. However, we spent our time on different things. Monitoring would have been great to being able to measure if our model’s performance over time, to ensure that it the model continue to work well over time. Monitoring can also be useful to detect drifting for the data. Another reason implementing monitoring would have been good is to monitor the system this could be useful to get an insight in our system and how many request are the application receiving and the time the application runs per request. This is important because it can help with optimization of performance aswell as detecting issues.  
 
 ### Question 24
 
@@ -513,7 +513,11 @@ We used one account for this project which in total spent x.xx$ whilst developin
 >
 > Answer:
 
---- question 26 fill here ---
+In our project we did have some different struggles at different times. In the beginning we struggled with getting our model and training on the data to work. We spent quite a bit of time to get TIMM to work and tried other things before going back and getting TIMM to work. Then after this our next struggle was with Pytorch Lighting this we also spent quite a lot of time on. This was because there was a lot of things we needed to rewrite and get it to log the correct things. So, the struggle here was rewriting our code and get it to work where we therefor also spent some time on debugging. Our third struggle was the github actions, here we had the problem with get the actions to give us check marks, and we also struggled here with the service accounts for docker and getting the dvc pull actions. 
+The last struggle we had and the biggest were in the deployment, here we spent a lot of time on different problems. We had one problem with the memory in the virtual machine, which end up giving us an error message, that did not really make sense. To overcome our struggles in the project we mainly asked a TA for help, we did this after we had tried different things such as using google and ChatGPT. The solutions to a lot of our struggles in the deployment, was small things such as adding extra memory or specifying the region/zone our code had to run on. 
+  
+
+
 
 ### Question 27
 
@@ -530,4 +534,7 @@ We used one account for this project which in total spent x.xx$ whilst developin
 >
 > Answer:
 
---- question 27 fill here ---
+s194369:
+s194340: 
+s194331:
+s194349:
