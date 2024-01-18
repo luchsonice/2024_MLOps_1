@@ -43,7 +43,7 @@ transform = v2.Compose([
 
 @app.get("/")
 def read_root():
-    return {"Welcome to our API for our smoking classifier! :D", "Go to /docs for docs", "Go to /metrics for metrics","Go to /inference for inference"}
+    return {"Welcome to our API for our smoking classifier! :D", "Go to /docs for docs", "Go to /metrics for metrics","Go to /inference for inference (use a POST request)"}
 
 @app.post("/inference/")
 async def inference(data: UploadFile = File(...)):
