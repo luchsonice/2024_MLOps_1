@@ -7,3 +7,17 @@ steps:
   args: ['build', '-t', 'gcr.io/mlops1-project/project-image-for-deploy', '.', '-f', 'dockerfiles/train_model.dockerfile']
 - name: 'gcr.io/cloud-builders/docker'
   args: ['push', 'gcr.io/mlops1-project/project-image-for-deploy']
+# Push the container image to Container Registry
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'gcr.io/mlops1-project/project-image-for-deploy:latest']
+# Deploy container image to Cloud Run
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  entrypoint: gcloud
+  args:
+  - 'run'
+  - 'deploy'
+  - 'deployed-model-service'
+  - '--image'
+  - 'gcr.io/mlops1-project/project-image-for-deploy:latest'
+  - '--region'
+  - 'europe-west1-b'
