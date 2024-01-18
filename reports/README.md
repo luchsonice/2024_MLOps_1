@@ -506,7 +506,7 @@ We used one account for this project which in total spent \$3.42 whilst developi
 > *Whenever we commit code and puch to github, it auto triggers ... and ... . From there the diagram shows ...*
 >
 > Answer:
-[my_image](figures/architecture.png)
+[architecture](figures/architecture.png)
 
 The starting point of the diagram is our local setup, where we integrated Pytorch Lightning, Conda, Weights and Biases and Hydra into our code. We ended up replacing Hydra with Weights and Biases for our config files, hence it is crossed out. The template of this setup was created using CookieCutter. The development of code was done with the help of Profilers (cProfiler, Pytorch Lightning and pdb). To version control the code we loaded everything into github and for the data into a bucket in Cloud Storage using dvc.
 
@@ -547,7 +547,7 @@ The last struggle we had and the biggest were in the deployment, here we spent a
 >
 > Answer:
 
-s194369:
+s194369: was in charge of initial setup (including cookiecutter, code and Weights and Biases and github), Compute Engine (training models/ sweeps), Continous Integration (Cloud Build, Container Regsitry and Cloud Run) and report writing.
 s194340:
 s194331:
 s194349:
