@@ -1,10 +1,14 @@
 from fastapi import FastAPI
+from fastapi import UploadFile, File
 import torch
 import numpy as np
-from torchvision import transforms
 from PIL import Image
 from prometheus_fastapi_instrumentator import Instrumentator
 from src.models.model import ResNetModel
+from google.cloud import storage
+import pickle
+from torchvision.transforms import v2
+from src.data import _DATA_MEAN, _DATA_STD
 
 """
 First:
@@ -16,42 +20,56 @@ Then go to:
     http://localhost:8000/
     http://localhost:8000/docs
     http://localhost:8000/metrics
-For interference go to:
-    http://localhost:8000/interference/{test_image_path}
-e.g.
-    http://localhost:8000/interference/nonsmoking/notsmoking_0036.jpg
-    http://localhost:8000/interference/smoking/smoking_0069.jpg
+For inference run the following command
+    curl -F "data=@<path_to_image>" http://127.0.0.1:8000/inference/
+for example
+    curl -F "data=@data/raw/Testing/smoking/smoking_0020.jpg" http://127.0.0.1:8000/inference/
 """
 
 app = FastAPI()
 
+BUCKET_NAME = "mlops-project-bucket"
+MODEL_FILE = "models/model_to_deploy.pickle"
+
+client = storage.Client()
+bucket = client.get_bucket(BUCKET_NAME)
+blob = bucket.get_blob(MODEL_FILE)
+
+my_model = pickle.loads(blob.download_as_string())
+my_model.eval()
+
+transform = v2.Compose([
+    v2.ToTensor(),
+    v2.Normalize(_DATA_MEAN, _DATA_STD)
+])
+
 @app.get("/")
 def read_root():
-    return {"Go to /metrics for metrics","Go to /interference/image_path for interference"}
+    return {"Go to /metrics for metrics","Go to /inference/image_path for inference"}
 
-@app.get("/interference/smoking/{image_path}")
-def interference_smoking(image_path: str):
-    return interference("smoking/" + image_path)
+@app.post("/inference/")
+async def inference(data: UploadFile = File(...)):
 
-@app.get("/interference/nonsmoking/{image_path}")
-def interference_nonsmoking(image_path: str):
-    return interference("nonsmoking/" + image_path)
+    # Save the image
+    with open('image.jpg', 'wb') as image:
+        content = await data.read()
+        image.write(content)
+        image.close()
 
-def interference(image_path: str):
-    img = Image.open("data/raw/Testing/" + image_path)
-    
-    convert_tensor = transforms.ToTensor()
-    x = convert_tensor(img)
-    x = x[None, :]
-    model = ResNetModel.load_from_checkpoint("models/config/2024-01-15_13-51-41/epoch=1-step=24.ckpt")
-    model.eval()
-    
+    # Open the image
+    img = Image.open("image.jpg")    
+
+    # Preprocess the image
+    img = torch.unsqueeze(transform(img), 0)
+
+    # Do prediction
     with torch.no_grad():
-        y_hat = model(x)
+        y_hat = my_model(img)
 
+    # Get class
     prediction = np.argmax(y_hat.numpy())
-    prediction = ["notsmoking", "smoking"][prediction]
+    predicted_class = ["notsmoking", "smoking"][prediction]
 
-    return {"prediction": prediction}
+    return {"predicted_class": predicted_class, "raw_logits": str(y_hat.numpy()[0])}
 
 Instrumentator().instrument(app).expose(app)
