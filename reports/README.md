@@ -129,7 +129,7 @@ s194369, s194340, s194331, s194349
 >
 > Answer:
 
-We have in our project used different third-party frameworks for different functionalities. We have used Pytorch lighting to reduce boilerplate, providing a structured foundation for our model. From Timm we used the pretrained ResNet class, more specifically we used the model resnet18. We also initially used hydra to manage our hyperparameters, which we however later scrapped for instead using another third-party framework, namely Weights & Biases. W&B was for used logging training progress and conducting parameter sweeps, which helped us a lot during our project. So overall, we have in this project tried different frameworks to see what fit our project the best. 
+We have in our project used different third-party frameworks for different functionalities. We have used Pytorch lighting to reduce boilerplate, providing a structured foundation for our model. From Timm we used the pretrained ResNet class, more specifically we used the model resnet18. We also initially used hydra to manage our hyperparameters, which we however later scrapped for instead using another third-party framework, namely Weights & Biases. W&B was for used logging training progress and conducting parameter sweeps, which helped us a lot during our project. So overall, we have in this project tried different frameworks to see what fit our project the best.
 
 ## Coding environment
 
@@ -305,7 +305,7 @@ For Weights and Biases the configuration file is simply just given in the WandbL
 >
 > Answer:
 
-In our project we made use of config files for hyperparameters and we used wandb. This makes it easy to see what parameters are used to train with. To be able to track the parameters we used wandb. In our github repository we have a folder called wandb, which has a config file that has our parameters. Also in wandb it is possible to see all experimentes run with the hyperparameters used. So to reproduce an experiment one would update the configs files in the folder configs with the parameters from the experimnet which they want to reproduced found using either the folder wandb or on the wandb website. To be able reproduce the exact results one would also need to set a seed in the config file.  
+In our project we made use of config files for hyperparameters and we used wandb. This makes it easy to see what parameters are used to train with. To be able to track the parameters we used wandb. In our github repository we have a folder called wandb, which has a config file that has our parameters. Also in wandb it is possible to see all experimentes run with the hyperparameters used. So to reproduce an experiment one would update the configs files in the folder configs with the parameters from the experimnet which they want to reproduced found using either the folder wandb or on the wandb website. To be able reproduce the exact results one would also need to set a seed in the config file.
 
 ### Question 14
 
@@ -322,7 +322,7 @@ In our project we made use of config files for hyperparameters and we used wandb
 >
 > Answer:
 
-In W&B there is many different things there is tracked. So, for this report we have chosen three different tracks to show the experiments we have done in W&B. The first tracked we have chosen is the training loss. 
+In W&B there is many different things there is tracked. So, for this report we have chosen three different tracks to show the experiments we have done in W&B. The first tracked we have chosen is the training loss.
 ![my_image](figures/q14-trainloss.png)<br />
 We can see that we have a decrease in the training loss. The training loss is good for seeing how our model is learning when training on the training data and if perhaps we need to change anything in or model. With the training loss we will be able to detect if the model is overfitting. The training loss however only tells us about what happens when train so to get a better understanding of the model we also need to look outside the training so the next track is of the validation loss.<br />
 ![my_image](figures/q14-valloss.png)<br />
@@ -424,7 +424,7 @@ All instances were initiated using
 >
 > Answer:
 
---- question 20 fill here ---
+![my_image](figures/q20-container-registry.PNG)
 
 ### Question 21
 
@@ -449,7 +449,17 @@ All instances were initiated using
 >
 > Answer:
 
---- question 22 fill here ---
+We managed to deploy our model in the cloud. We did this by first building a FastAPI application that loads the trained model from our bucket, and we can do inference on images we upload. This FastAPI was first made to run locally, and when this was working we built a docker image that automatically starts the application. When trying to run the image locally we ran into issues with getting the right permissions for accessing gdrive inside the container, but we did not have these issues once it was deployed in the cloud. To deploy, we pushed our docker image to the Container Registry and created a Cloud Run service that runs the container. Finally, we set up continuous deployment such that the docker image is automatically built every time we push to the main branch, ensuring that we do not need to manually build the image every time.
+
+To invoke our service, a user makes a POST request to our API uploading an image. This can be done with the following command, where `image.jpg` should be replaced with the path to the desired image file:
+```
+curl -X "POST" \
+  "https://project-image-for-deploy-rpbxq26uca-ew.a.run.app/inference/" \
+  -H "accept: application/json" \
+  -H "Content-Type: multipart/form-data" \
+  -F "data=@image.jpg;type=image/jpeg"
+```
+or it can be done through [the docs page](https://project-image-for-deploy-rpbxq26uca-ew.a.run.app/docs).
 
 ### Question 23
 
