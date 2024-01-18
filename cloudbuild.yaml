@@ -20,4 +20,4 @@ steps:
   - '--image'
   - 'gcr.io/mlops1-project/project-image-for-deploy:latest'
   - '--region'
-  - 'europe-west1-b'
+  - 'europe-west1'
