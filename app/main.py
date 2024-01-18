@@ -11,10 +11,10 @@ from torchvision.transforms import v2
 from src.data import _DATA_MEAN, _DATA_STD
 
 """
-To launch API run: 
+To launch API run:
     uvicorn --reload --port 8080 app.main:app
 
-Then go to: 
+Then go to:
     http://localhost:8080/
     http://localhost:8080/docs
     http://localhost:8080/metrics
@@ -55,7 +55,7 @@ async def inference(data: UploadFile = File(...)):
         image.close()
 
     # Open the image
-    img = Image.open("image.jpg")    
+    img = Image.open("image.jpg")
 
     # Preprocess the image
     img = torch.unsqueeze(transform(img), 0)

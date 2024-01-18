@@ -129,7 +129,7 @@ s194369, s194340, s194331, s194349
 >
 > Answer:
 
-We have in our project used different third-party frameworks for different functionalities. We have used Pytorch lighting as boilerplate, providing a structured foundation for our model. From Timm we used the pretrained ResNet class and to be more specific we used the model resnet18. We also used hydra to train with hyperparameters which we later scraped for instead using another third-party framework, namely Weights & Biases. W&B was for used logging training progress and conducting parameter sweeps. Which helped us a lot during our project. So overall, we have in this project tried different frameworks to see what fit our project the best. 
+We have in our project used different third-party frameworks for different functionalities. We have used Pytorch lighting to reduce boilerplate, providing a structured foundation for our model. From Timm we used the pretrained ResNet class, more specifically we used the model resnet18. We also initially used hydra to manage our hyperparameters, which we however later scrapped for instead using another third-party framework, namely Weights & Biases. W&B was for used logging training progress and conducting parameter sweeps, which helped us a lot during our project. So overall, we have in this project tried different frameworks to see what fit our project the best. 
 
 ## Coding environment
 
@@ -156,7 +156,7 @@ make requirements
 dvc pull
 make data
 ```
-After these comands the basics is set up the model can now be run
+After these commands the basics are set up and the model can now be run.
 
 
 ### Question 5
@@ -172,7 +172,7 @@ After these comands the basics is set up the model can now be run
 > *experiments.*
 > Answer:
 
-We have in our project used the cookiecutter template, however since we have not used all the folder and also add some folder ourself. We have made som changes compared to folder structure given from the cookiecutter template.
+We have in our project used the cookiecutter template, however since we have not used all the folder and also add some folder ourself. We have made some changes compared to folder structure given from the cookiecutter template.
 From the cookiecutter template we have filled out the .dvc, .github, app, configs, data, dockerfiles, reports, tests  and src folder. We have removed the notebooks folder because we did not use any notebooks in our project. We also deleted the workflows folder since we saved our workflows in the .github folder. We have added an wandb folder that contains wandb metadata and logs from running our experiments.
 
 ### Question 6
@@ -234,7 +234,7 @@ In total we have implemented 2 unit tests. The test_data and test_model files in
 >
 > Answer:
 
-In the project we used branches, we used these when we were working at different parts, to both protect the main and also so it was easier when different people were implementing different parts. We would therefore also use pull request, however to make it easier the pull request would only contain one new feature. This helped making sure that we did not have to many branches at once but also making mering the branches with main easier, since it would only be a few new things. When a pull request was done we would look it over and also try the code to ensure it worked.
+In the project we used branches, we used these when we were working at different parts, to both protect the main and also so it was easier when different people were implementing different parts. We would therefore also use pull request, however to make it easier the pull request would only contain one new feature. This helped making sure that we did not have to many branches at once but also making merging the branches with main easier, since it would only be a few new things. When a pull request was done we would look it over and also try the code to ensure it worked.
 
 ### Question 10
 
@@ -265,7 +265,7 @@ We did in our project use DVC for managing data. We first stored our data on goo
 >
 > Answer:
 
-For continues integration, we incorporated GitHub workflows into our project infrastructure, to help ensure our commitment to code quality and reliability. As mentioned before we had 4 test, these were in unit test. These test were runed with a github work flow: .github\workflows\tests.yml. Which where done each time a a pull-request or a push on the main branch. This ensured both the data and the model was working. We also had a workflow to create the relevant docker files(these also mentioned before). Link to this workflow: .github\workflows\docker-image.yml, this again was done whenever a pull-request or a push on the main branch. With these workflows help us to have a continues integration.
+For continues integration, we incorporated GitHub workflows into our project infrastructure, to help ensure our commitment to code quality and reliability. As mentioned before we had 4 test, these were in unit test. These test were run with a github work flow: .github\workflows\tests.yml. Which were done each time a a pull-request or a push on the main branch. This ensured both the data and the model was working. We also had a workflow to create the relevant docker files (these also mentioned before). Link to this workflow: .github\workflows\docker-image.yml, this again was done whenever a pull-request or a push on the main branch. With these workflows help us to have a continues integration.
 
 ## Running code and tracking experiments
 
@@ -305,7 +305,7 @@ For Weights and Biases the configuration file is simply just given in the WandbL
 >
 > Answer:
 
-In our project we made use of config files for hyperparameters and we used wandb. This makes it easy to see what parameters are used to train with. To be able to track the parameters used wandb In our github repository we have a folder called wandb, which has a config file that has our parameters. Also in wandb  it is possible to see all experimentes runed with the hyperparamters used. So to reproduce an experiment one would update the configs files in the folder configs with the parameters from the experimnet which they want to reproduced found using either the folder wandb or on the wandb website. To be able reproduce the exact results one would also need to set a seed in the config file.  
+In our project we made use of config files for hyperparameters and we used wandb. This makes it easy to see what parameters are used to train with. To be able to track the parameters we used wandb. In our github repository we have a folder called wandb, which has a config file that has our parameters. Also in wandb it is possible to see all experimentes run with the hyperparameters used. So to reproduce an experiment one would update the configs files in the folder configs with the parameters from the experimnet which they want to reproduced found using either the folder wandb or on the wandb website. To be able reproduce the exact results one would also need to set a seed in the config file.  
 
 ### Question 14
 
@@ -375,13 +375,13 @@ When running into bugs in the project we used different things we have used prin
 >
 > Answer:
 
-We used the following GCP services: Compute Engine VM instances, Buckets, Functions as well as Service Accounts.
+We used the following GCP services: Compute Engine VM instances, Buckets, Cloud Run, as well as Service Accounts.
 
 VM instances are used to outsource computations and further have adjustable resources in regards to the number of cores and memory.
 
 Buckets are Cloud Storages with access control.
 
-Functions is a service that allows to write event-triggered functions, in our case when uploading an image a function is triggered which returns the prediction of the model.
+Cloud Run is a service that allows us to deploy an application as a Docker container. In our case we use it to host our API for our deployed model. We also initially tried using Cloud Functions for our model deployment, which is a service that allows to write event-triggered functions, in our case when uploading an image a function is triggered which returns the prediction of the model. However we ran into issues using Functions and ended up using Run instead.
 
 ### Question 18
 

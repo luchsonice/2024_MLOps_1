@@ -21,7 +21,7 @@ class ResNetModel(LightningModule):
         self.train_acc = torchmetrics.classification.Accuracy(task="binary")
         self.val_acc = torchmetrics.classification.Accuracy(task="binary")
         self.test_acc = torchmetrics.classification.Accuracy(task="binary")
-        
+
         self.train_precision = torchmetrics.classification.Precision(task="binary")
         self.val_precision = torchmetrics.classification.Precision(task="binary")
         self.test_precision = torchmetrics.classification.Precision(task="binary")

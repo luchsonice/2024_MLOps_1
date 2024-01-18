@@ -33,7 +33,7 @@ def test(model_path: str, batch_size=64):
 
     python src/predict_model.py "models/config/<timestamp>/epoch=x-step=x.ckpt"
     """
-    
+
     # Load model checkpoint
     model = ResNetModel.load_from_checkpoint(model_path)
 
