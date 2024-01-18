@@ -11,15 +11,13 @@ from torchvision.transforms import v2
 from src.data import _DATA_MEAN, _DATA_STD
 
 """
-First:
-    Change checkpoint file path to a valid checkpoint
 To launch API run: 
-    uvicorn --reload --port 8000 app.main:app
+    uvicorn --reload --port 8080 app.main:app
 
 Then go to: 
-    http://localhost:8000/
-    http://localhost:8000/docs
-    http://localhost:8000/metrics
+    http://localhost:8080/
+    http://localhost:8080/docs
+    http://localhost:8080/metrics
 For inference run the following command
     curl -F "data=@<path_to_image>" http://127.0.0.1:8000/inference/
 for example
@@ -45,7 +43,7 @@ transform = v2.Compose([
 
 @app.get("/")
 def read_root():
-    return {"Go to /metrics for metrics","Go to /inference/image_path for inference"}
+    return {"Welcome to our API for our smoking classifier! :D", "Go to /docs for docs", "Go to /metrics for metrics","Go to /inference for inference (use a POST request)"}
 
 @app.post("/inference/")
 async def inference(data: UploadFile = File(...)):
