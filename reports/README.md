@@ -265,7 +265,7 @@ We did in our project use DVC for managing data. We first stored our data on goo
 >
 > Answer:
 
-For continues integration, we incorporated GitHub workflows into our project infrastructure, to help ensure our commitment to code quality and reliability. As mentioned before we had 4 test, these were in unit test. These test were run with a github work flow: .github\workflows\tests.yml. Which were done each time a a pull-request or a push on the main branch. This ensured both the data and the model was working. We also had a workflow to create the relevant docker files (these also mentioned before). Link to this workflow: .github\workflows\docker-image.yml, this again was done whenever a pull-request or a push on the main branch. With these workflows help us to have a continues integration.
+For continues integration, we incorporated GitHub workflows into our project infrastructure, to help ensure our commitment to code quality and reliability. As mentioned before we had 4 tests, these were in unit test. These test were run with a github work flow: .github\workflows\tests.yml. Which were done each time a a pull-request or a push on the main branch. This ensured both the data and the model was working. We also had a workflow to create the relevant docker files (these also mentioned before). Link to this workflow: .github\workflows\docker-image.yml, this again was done whenever a pull-request or a push on the main branch. With these workflows help us to have a continues integration.
 
 ## Running code and tracking experiments
 
@@ -284,11 +284,16 @@ For continues integration, we incorporated GitHub workflows into our project inf
 >
 > Answer:
 
-In our project we had a configs folder in which a configuration file was. It had the hyperparamters: the batch size of the model, learning rate and number of epochs. The configuration file was used by:
+In our project we had a configs folder in which a configuration file was. It had the hyperparamters: batch size of the model, learning rate and number of epochs. We used a second configuration file for running sweeps. After running around 50 runs via sweeps we found the optimal parameters and put them in the config.yaml file which states: 
 ```
- batch_size = config['batch_size']
-lr = config['lr']
-num_epochs = config['num_epochs']
+name:
+  value: "config"
+batch_size:
+  value: 128
+lr:
+  value: 0.0006332
+num_epochs:
+  value: 20
 ```
 For Weights and Biases the configuration file is simply just given in the WandbLogger(config=config).
 
@@ -379,7 +384,7 @@ We used the following GCP services: Compute Engine VM instances, Buckets, Cloud 
 
 VM instances are used to outsource computations and further have adjustable resources in regards to the number of cores and memory.
 
-Buckets are Cloud Storages with access control.
+Buckets are Cloud Storages with access control and the possibility to store larger amounts of data compared to for example Google Drive.
 
 Cloud Run is a service that allows us to deploy an application as a Docker container. In our case we use it to host our API for our deployed model. We also initially tried using Cloud Functions for our model deployment, which is a service that allows to write event-triggered functions, in our case when uploading an image a function is triggered which returns the prediction of the model. However we ran into issues using Functions and ended up using Run instead.
 
@@ -430,7 +435,7 @@ All instances were initiated using
 > **your project. You can take inspiration from [this figure](figures/build.png).**
 >
 > Answer:
-[my_image](figures/build.png)
+![my_image](figures/build.png)
 
 
 ### Question 22
@@ -506,7 +511,7 @@ We used one account for this project which in total spent \$3.42 whilst developi
 > *Whenever we commit code and puch to github, it auto triggers ... and ... . From there the diagram shows ...*
 >
 > Answer:
-[architecture](figures/architecture.png)
+![architecture](figures/architecture.png)
 
 The starting point of the diagram is our local setup, where we integrated Pytorch Lightning, Conda, Weights and Biases and Hydra into our code. We ended up replacing Hydra with Weights and Biases for our config files, hence it is crossed out. The template of this setup was created using CookieCutter. The development of code was done with the help of Profilers (cProfiler, Pytorch Lightning and pdb). To version control the code we loaded everything into github and for the data into a bucket in Cloud Storage using dvc.
 
