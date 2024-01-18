@@ -15,3 +15,4 @@ pytest
 fastapi
 uvicorn[standard]
 prometheus-fastapi-instrumentator
+python-multipart
