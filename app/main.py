@@ -2,10 +2,13 @@ from fastapi import FastAPI
 from fastapi import UploadFile, File
 import torch
 import numpy as np
-from torchvision import transforms
 from PIL import Image
 from prometheus_fastapi_instrumentator import Instrumentator
 from src.models.model import ResNetModel
+from google.cloud import storage
+import pickle
+from torchvision.transforms import v2
+from src.data import _DATA_MEAN, _DATA_STD
 
 """
 First:
@@ -25,18 +28,8 @@ for example
 
 app = FastAPI()
 
-from google.cloud import storage
-import pickle
-import os
-import io
-import torch
-import numpy as np
-from torchvision.transforms import v2
-from PIL import Image
-from src.data import _DATA_MEAN, _DATA_STD
-
-BUCKET_NAME = "final-model-bucket"
-MODEL_FILE = "model_to_deploy.pickle"
+BUCKET_NAME = "mlops-project-bucket"
+MODEL_FILE = "models/model_to_deploy.pickle"
 
 client = storage.Client()
 bucket = client.get_bucket(BUCKET_NAME)
