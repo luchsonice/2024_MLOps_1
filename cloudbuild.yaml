@@ -1,5 +1,5 @@
 steps:
-- name: 'gcr.io/cloud-builders/docker'
+- name: 'gcr.io/cloud-builders/docker2'
   args: ['build', '-t', 'gcr.io/mlops1-project/testing', '.']
-- name: 'gcr.io/cloud-builders/docker'
+- name: 'gcr.io/cloud-builders/docker2'
   args: ['push', 'gcr.io/mlops1-project/testing']
