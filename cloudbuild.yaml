@@ -16,7 +16,7 @@ steps:
   args:
   - 'run'
   - 'deploy'
-  - 'deployed-model-service'
+  - 'project-image-for-deploy'
   - '--image'
   - 'gcr.io/mlops1-project/project-image-for-deploy:latest'
   - '--region'
