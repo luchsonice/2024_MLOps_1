@@ -413,9 +413,7 @@ All instances were initiated using
 > **You can take inspiration from [this figure](figures/bucket.png).**
 >
 > Answer:
-
-![my_image](figures/bucket1.png)
-![my_image](figures/bucket2.png)
+![my_image](figures/bucket.png)
 
 ### Question 20
 
@@ -474,7 +472,7 @@ or it can be done through [the docs page](https://project-image-for-deploy-rpbxq
 >
 > Answer:
 
---- question 23 fill here ---
+We did not manage to implement monitoring; it would have been great if we have had the time to implement it. However, we spent our time on different things. Monitoring would have been great to being able to measure if our model’s performance over time, to ensure that it the model continue to work well over time. Monitoring can also be useful to detect drifting for the data. Another reason implementing monitoring would have been good is to monitor the system this could be useful to get an insight in our system and how many request are the application receiving and the time the application runs per request. This is important because it can help with optimization of performance aswell as detecting issues.
 
 ### Question 24
 
@@ -488,7 +486,7 @@ or it can be done through [the docs page](https://project-image-for-deploy-rpbxq
 >
 > Answer:
 
-We used one account for this project which in total spent x.xx$ whilst developing the model and it's deployment. The high cpu instance was most expensive with an hourly rate of 0.44$. Least expensive were the Functions.
+We used one account for this project which in total spent $3.42 whilst developing the model and it's deployment. The high cpu instance was most expensive with an hourly rate of 0.44$ and in the end being 96.8% of the total cost. Least expensive were the Functions with $0.01.
 
 ## Overall discussion of project
 
@@ -508,8 +506,13 @@ We used one account for this project which in total spent x.xx$ whilst developin
 > *Whenever we commit code and puch to github, it auto triggers ... and ... . From there the diagram shows ...*
 >
 > Answer:
+[my_image](figures/architecture.png)
 
---- question 25 fill here ---
+The starting point of the diagram is our local setup, where we integrated Pytorch Lightning, Conda, Weights and Biases and Hydra into our code. We ended up replacing Hydra with Weights and Biases for our config files, hence it is crossed out. The template of this setup was created using CookieCutter. The development of code was done with the help of Profilers (cProfiler, Pytorch Lightning and pdb). To version control the code we loaded everything into github and for the data into a bucket in Cloud Storage using dvc.
+
+Whenever we commit code and push to github, it auto triggers github actions performing unit tests and testing whether docker builds an image. Furthermore the Cloud Build is triggered to automatically build a docker image which contionously is pushed to the container registry. From there the diagram shows that this image is consumed by Cloud Run running the container using a virutal machine. The end user makes a request to fastapi application which runs in Cloud Run.
+
+Hence, due to continous integration the user automatically always gets the latest model pushed to main.
 
 ### Question 26
 
@@ -523,7 +526,11 @@ We used one account for this project which in total spent x.xx$ whilst developin
 >
 > Answer:
 
---- question 26 fill here ---
+In our project we did have some different struggles at different times. In the beginning we struggled with getting our model and training on the data to work. We spent quite a bit of time to get TIMM to work and tried other things before going back and getting TIMM to work. Then after this our next struggle was with Pytorch Lighting this we also spent quite a lot of time on. This was because there was a lot of things we needed to rewrite and get it to log the correct things. So, the struggle here was rewriting our code and get it to work where we therefor also spent some time on debugging. Our third struggle was the github actions, here we had the problem with get the actions to give us check marks, and we also struggled here with the service accounts for docker and getting the dvc pull actions.
+The last struggle we had and the biggest were in the deployment, here we spent a lot of time on different problems. We had one problem with the memory in the virtual machine, which end up giving us an error message, that did not really make sense. To overcome our struggles in the project we mainly asked a TA for help, we did this after we had tried different things such as using google and ChatGPT. The solutions to a lot of our struggles in the deployment, was small things such as adding extra memory or specifying the region/zone our code had to run on.
+
+
+
 
 ### Question 27
 
@@ -540,4 +547,7 @@ We used one account for this project which in total spent x.xx$ whilst developin
 >
 > Answer:
 
---- question 27 fill here ---
+s194369:
+s194340:
+s194331:
+s194349:
