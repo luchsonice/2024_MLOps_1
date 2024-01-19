@@ -388,6 +388,8 @@ Buckets are Cloud Storages with access control and the possibility to store larg
 
 Cloud Run is a service that allows us to deploy an application as a Docker container. In our case we use it to host our API for our deployed model. We also initially tried using Cloud Functions for our model deployment, which is a service that allows to write event-triggered functions, in our case when uploading an image a function is triggered which returns the prediction of the model. However we ran into issues using Functions and ended up using Run instead.
 
+Service accounts are necessary to get the required permissions for GCP when running in a docker container or a VM, e.g. in Github Actions.
+
 ### Question 18
 
 > **The backbone of GCP is the Compute engine. Explained how you made use of this service and what type of VMs**
