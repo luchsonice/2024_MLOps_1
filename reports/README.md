@@ -551,8 +551,8 @@ The last struggle we had and the biggest were in the deployment, here we spent a
 > *All members contributed to code by...*
 >
 > Answer:
-
-s194369: was in charge of initial setup (including cookiecutter, code and Weights and Biases and github), Compute Engine (training models/ sweeps), Continous Integration (Cloud Build, Container Regsitry and Cloud Run) and report writing.
-s194340:
-s194331:
-s194349:
+In the is project we have all runed the code locally, and help each other with both writing and debugging code. <br /> 
+s194369: was in charge of initial setup (including cookiecutter, code and Weights and Biases and github), Compute Engine (training models/ sweeps), Continous Integration (Cloud Build, Container Regsitry and Cloud Run) and report writing. <br />
+s194340: <br />
+s194331: <br />
+s194349: Mainly the report, work on github actions and version control. Good coding practice, as well as the initinal docker image. Also helped with deploying the model.
