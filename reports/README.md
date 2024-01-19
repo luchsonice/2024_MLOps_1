@@ -219,7 +219,7 @@ In total we have implemented 2 unit tests. The test_data and test_model files in
 >
 > Answer:
 
-For coverage we got a total of 53 % precent. We are far from a 100 % but this is because all our tests are one the data (correct spilt, and size) and on the that model gives out the correct output. So, on these two areas we have a 100 %. But we are then lacking in some other areas. However, we have not had any problems with our code, and also even if were to have a 100 % coverage overall that does still guarantee. To get a higher coverage we could have written more test however due to time we did not get to do that.
+For coverage we got a total of 53 %. We are far from 100 % but this is because all our tests are on the data (correct split and size) and on that the model gives out the correct output. So, on these two areas we have a 100 %, but we are then lacking in some other areas. However, we have not had any problems with our code. Also, even if we were to have a 100 % coverage overall that does not guarantee that our code is bug free, since we canoot consider all possible aspects of what could go wrong. To get a higher coverage we could have written more tests, however due to time we did not get to do that.
 
 ### Question 9
 
@@ -284,7 +284,7 @@ For continues integration, we incorporated GitHub workflows into our project inf
 >
 > Answer:
 
-In our project we had a configs folder in which a configuration file was. It had the hyperparamters: batch size of the model, learning rate and number of epochs. We used a second configuration file for running sweeps. After running around 50 runs via sweeps we found the optimal parameters and put them in the config.yaml file which states: 
+In our project we had a configs folder in which a configuration file was. It had the hyperparamters: batch size of the model, learning rate and number of epochs. We used a second configuration file for running sweeps. After running around 50 runs via sweeps we found the optimal parameters and put them in the config.yaml file which states:
 ```
 name:
   value: "config"
@@ -551,7 +551,7 @@ The last struggle we had and the biggest were in the deployment, here we spent a
 > *All members contributed to code by...*
 >
 > Answer:
-In the is project we have all run the code locally and tested models. We have also helped each other with both writing and debugging code. <br /> 
+In the is project we have all run the code locally and tested models. We have also helped each other with both writing and debugging code. <br />
 s194369: was in charge of initial setup (including cookiecutter, code and Weights and Biases and github), Compute Engine (training models/ sweeps), Continous Integration (Cloud Build, Container Regsitry and Cloud Run) and report writing. <br />
 s194340: Was in charge of setting up the data, implemented hydra(which we choose later not to use). Version control for the data (DVC). Also worked on the make files as well as the configuration. And helped with report and deploying the model. <br \>
 s194331: Was in carge of pytorch lighting, and wrote unit tests. Helped with deploying the model and setting up Fast API. And also helped with writing the report.   <br />
