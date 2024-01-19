@@ -265,7 +265,7 @@ We did in our project use DVC for managing data. We first stored our data on goo
 >
 > Answer:
 
-For continues integration, we incorporated GitHub workflows into our project infrastructure, to help ensure our commitment to code quality and reliability. As mentioned before we had 4 tests, these were in unit test. These test were run with a github work flow: .github\workflows\tests.yml. Which were done each time a a pull-request or a push on the main branch. This ensured both the data and the model was working. We also had a workflow to create the relevant docker files (these also mentioned before). Link to this workflow: .github\workflows\docker-image.yml, this again was done whenever a pull-request or a push on the main branch. With these workflows help us to have a continues integration.
+For continues integration, we incorporated GitHub workflows into our project infrastructure, to help ensure our commitment to code quality and reliability. As mentioned before we had 4 tests, these were in unit test. These test were run with a github work flow: .github\workflows\tests.yml. Which were done each time a a pull-request or a push on the main branch. This ensured both the data and the model was working. We also had a workflow to build the relevant docker images (these also mentioned before) and automatically push them to our GCP container registry. Link to this workflow: .github\workflows\docker-image.yml, this again was done whenever a pull-request or a push on the main branch. With these workflows help us to have a continues integration.
 
 ## Running code and tracking experiments
 
