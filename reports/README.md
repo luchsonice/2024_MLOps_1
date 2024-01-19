@@ -348,7 +348,7 @@ Which is good for seeing more in-depth information about the hyperparameters and
 >
 > Answer:
 
-In our project, reproducibility is very important. To address this, we chose to use Docker files. This choice was motivated by the desire to create an environment that is consistent and easily replicable across various devices and platforms. By using Docker in our project, it helps to ensure that our entire workflow, from model training to predictions, remains reproducible and consistent. For our project, we have created specific Docker files for model training and model prediction. These Docker files contains the necessary dependencies, libraries, and configurations. The link to our two docker files (for model and prediction) are: xxx and xxxx
+In our project, reproducibility is very important. To address this, we chose to use Docker files. This choice was motivated by the desire to create an environment that is consistent and easily replicable across various devices and platforms. By using Docker in our project, it helps to ensure that our entire workflow, from model training to predictions, remains reproducible and consistent. For our project, we have created specific Docker files for model training, model prediction and our deployment with FastAPI. These Docker files contains the necessary dependencies, libraries, and configurations. The dockerfiles can be found in the [dockerfiles](https://github.com/luchsonice/2024_MLOps_1/tree/main/dockerfiles) folder.
 
 ### Question 16
 
@@ -363,7 +363,7 @@ In our project, reproducibility is very important. To address this, we chose to 
 >
 > Answer:
 
-When running into bugs in the project we used different things we have used print statements but also used pdb,cProfile and Pytorch Lightning debugger to debug the code. However when using the debugger it did not result in a clear statement what the underlying problem were. This was due to the fact that built-in functions took much of the time and whitout changing the source code there is no way to improve (even if, the built-in functions are often already optimal). Another case was where we ran out of memory, giving us different results when profiling each run. Hence, we tried removing elements in our code until we found the error. Profiling added some value in this project but not as much as it could
+When running into bugs in the project we used different things we have used print statements but also used pdb,cProfile and Pytorch Lightning debugger to debug the code. However when using the debugger it did not result in a clear statement what the underlying problem were. This was due to the fact that built-in functions took much of the time and whitout changing the source code there is no way to improve (even if, the built-in functions are often already optimal). Another case was where we ran out of memory, giving us different results when profiling each run. Hence, we tried removing elements in our code until we found the error. Profiling added some value in this project but not as much as it could.
 
 ## Working in the cloud
 
