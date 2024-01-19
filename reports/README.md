@@ -219,7 +219,7 @@ In total we have implemented 2 unit tests. The test_data and test_model files in
 >
 > Answer:
 
---- question 8 fill here ---
+For coverage we got a total of 53 % precent. We are far from a 100 % but this is because all our tests are one the data (correct spilt, and size) and on the that model gives out the correct output. So, on these two areas we have a 100 %. But we are then lacking in some other areas. However, we have not had any problems with our code, and also even if were to have a 100 % coverage overall that does still guarantee. To get a higher coverage we could have written more test however due to time we did not get to do that.
 
 ### Question 9
 
@@ -553,6 +553,6 @@ The last struggle we had and the biggest were in the deployment, here we spent a
 > Answer:
 In the is project we have all run the code locally and tested models. We have also helped each other with both writing and debugging code. <br /> 
 s194369: was in charge of initial setup (including cookiecutter, code and Weights and Biases and github), Compute Engine (training models/ sweeps), Continous Integration (Cloud Build, Container Regsitry and Cloud Run) and report writing. <br />
-s194340: Was in charge of setting up the data, implemented hydra(which we choose later not to use). Version control for the data (dvc). Also worked on the make files as well as the configuration. <br \>
-s194331: Was in carge of pytorch lighting, and wrote unit tests. For deploying the model and setting up Fast API. And also helped with writing the report.   <br />
+s194340: Was in charge of setting up the data, implemented hydra(which we choose later not to use). Version control for the data (DVC). Also worked on the make files as well as the configuration. And helped with report and deploying the model. <br \>
+s194331: Was in carge of pytorch lighting, and wrote unit tests. Helped with deploying the model and setting up Fast API. And also helped with writing the report.   <br />
 s194349: In charge of the report, work on github workfolw and version control. Good coding practice, as well as the initinal docker image. Also helped with deploying the model.
