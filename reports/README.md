@@ -553,6 +553,6 @@ The last struggle we had and the biggest were in the deployment, here we spent a
 > Answer:
 In the is project we have all run the code locally and tested models. We have also helped each other with both writing and debugging code. <br /> 
 s194369: was in charge of initial setup (including cookiecutter, code and Weights and Biases and github), Compute Engine (training models/ sweeps), Continous Integration (Cloud Build, Container Regsitry and Cloud Run) and report writing. <br />
-s194340: Was in charge of setting up the data, implemented hydra(which we choose later not to use). Version control for the data (DVC). Also worked on the make files as well as the configuration. And helped with report and deploying the model. <br \>
+s194340: Was in charge of setting up the data, implemented hydra(which we choose later not to use). Version control for the data (DVC). Also worked on the make files as well as the configuration. And helped with report and deploying the model. <br />
 s194331: Was in carge of pytorch lighting, and wrote unit tests. Helped with deploying the model and setting up Fast API. And also helped with writing the report.   <br />
 s194349: In charge of the report, work on github workfolw and version control. Good coding practice, as well as the initinal docker image. Also helped with deploying the model.
