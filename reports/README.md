@@ -74,14 +74,14 @@ end of the project.
 
 * [X] Write unit tests related to the data part of your code
 * [X] Write unit tests related to model construction and or model training
-* [ ] Calculate the coverage.
+* [X] Calculate the coverage.
 * [X] Get some continuous integration running on the github repository
 * [X] Create a data storage in GCP Bucket for you data and preferable link this with your data version control setup
 * [X] Create a trigger workflow for automatically building your docker images
 * [X] Get your model training in GCP using either the Engine or Vertex AI
 * [X] Create a FastAPI application that can do inference using your model
 * [ ] If applicable, consider deploying the model locally using torchserve
-* [ ] Deploy your model in GCP using either Functions or Run as the backend
+* [X] Deploy your model in GCP using either Functions or Run as the backend
 
 ### Week 3
 
@@ -94,9 +94,9 @@ end of the project.
 
 ### Additional
 
-* [ ] Revisit your initial project description. Did the project turn out as you wanted?
-* [ ] Make sure all group members have a understanding about all parts of the project
-* [ ] Uploaded all your code to github
+* [X] Revisit your initial project description. Did the project turn out as you wanted?
+* [X] Make sure all group members have a understanding about all parts of the project
+* [X] Uploaded all your code to github
 
 ## Group information
 
@@ -551,8 +551,8 @@ The last struggle we had and the biggest were in the deployment, here we spent a
 > *All members contributed to code by...*
 >
 > Answer:
-In the is project we have all runed the code locally, and help each other with both writing and debugging code. <br /> 
+In the is project we have all run the code locally and tested models. We have also helped each other with both writing and debugging code. <br /> 
 s194369: was in charge of initial setup (including cookiecutter, code and Weights and Biases and github), Compute Engine (training models/ sweeps), Continous Integration (Cloud Build, Container Regsitry and Cloud Run) and report writing. <br />
 s194340: <br />
 s194331: <br />
-s194349: Mainly the report, work on github actions and version control. Good coding practice, as well as the initinal docker image. Also helped with deploying the model.
+s194349: Mainly the report, work on github workfolw and version control. Good coding practice, as well as the initinal docker image. Also helped with deploying the model.
