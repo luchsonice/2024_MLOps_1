@@ -555,4 +555,4 @@ In the is project we have all run the code locally and tested models. We have al
 s194369: was in charge of initial setup (including cookiecutter, code and Weights and Biases and github), Compute Engine (training models/ sweeps), Continous Integration (Cloud Build, Container Regsitry and Cloud Run) and report writing. <br />
 s194340: <br />
 s194331: <br />
-s194349: Mainly the report, work on github workfolw and version control. Good coding practice, as well as the initinal docker image. Also helped with deploying the model.
+s194349: In charge of the report, work on github workfolw and version control. Good coding practice, as well as the initinal docker image. Also helped with deploying the model.
